@@ -1,0 +1,470 @@
+/* * {
+   border: 1px solid red;
+} */
+
+
+/*컨셉 색상*/
+
+/*
+UI BASE1
+#C7D36F
+
+UI BASE2
+#FCF9C6
+
+UI BASE3
+#E0DECA
+*/
+
+/* 폰트 링크(주아체, 감자꽃체) */
+@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&display=swap');
+
+*{
+    font-family: 'Gamja Flower', cursive;
+    font-size: 26px;
+}
+
+/*메인*/
+.main_container{
+    width: 85%;
+    margin: auto;
+}
+
+.title_container{
+    width: 100%;
+    height: 50px;
+    margin: 90px auto 0 auto;
+    font-size: 28px;
+    color: white;
+    margin-bottom: 30px;
+    border: none;
+    background-color: #C7D36F;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top_box{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    margin: auto;
+    margin-top: 30px;
+}
+
+.top_left{
+    width: 50%;
+}
+
+.category_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;}
+
+.category_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.category_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+}
+
+.category_button{
+    font-size: 15px;
+    width: 50px;
+    height: 50px;
+    margin-right: 20px;
+    border-radius: 50%;
+    border: 0;
+}
+
+
+.clicked {
+    background-color: #C7D36F;
+    color: orangered;
+}
+
+.category_input{
+    display: none;
+}
+
+.name_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.name_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name_input_box{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.name_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.title_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.title_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+
+.requirement_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.requirement_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.requirement_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.requirement_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.cost_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.cost_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cost_input_box{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cost_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.period_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.period_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.period_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.period_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.desc_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.desc_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.desc_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.desc_input{
+    width: 100%;
+    height: 30px;
+    font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+}
+
+.location_box{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+}
+
+.location_title{
+    width: 20%;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.location_input_box{
+    width: 80%;
+    height: 100px;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.location_input{
+    width: 99%;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 3px;
+}
+
+.location_find{
+    width: 100px;
+    height: 30px;
+    background-color: #FCF9C6;
+    font-size: 15px;
+    border: 0;
+    border-radius: 15px;
+}
+
+.location_road{
+    border: none;
+    width: 800px;
+    height: 30px;
+    font-size: 15px;
+}
+
+/* 이미지 */
+.file_upload_container{
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 1300px;
+    overflow: auto;
+}
+
+.file_upload{
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    margin: 10px    ;
+}
+
+.img_read{
+    width: 400px;
+    height: 400px;
+    /* top: 0;
+    left: 0; */
+}
+
+.file_choice{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    /* top: 0;
+    left: 0; */
+    opacity: 0;
+}
+
+.file_choice:hover{
+    cursor: pointer;
+}
+
+.img_read1{
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+}
+
+.file_choice1{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.file_choice1:hover{
+    cursor: pointer;
+}
+
+.img_read2{
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+}
+
+.file_choice2{
+    position: absolute;
+    width: 400px;
+    height: 400px;
+    top: 0;
+    left: 0;
+    opacity: 0;
+}
+
+.file_choice2:hover{
+    cursor: pointer;
+}
+
+
+/* 요청 */
+.submit_box{
+    margin-top: 20px;
+    margin-bottom: 50px;
+    display: flex;
+    justify-content: center;
+}
+
+.submit_button{
+    border: none;
+    border-radius: 3px;
+    width: 100px;
+    height: 30px;
+    font-size: 20px;
+    color: white;
+    background-color: #C7D36F;
+}
+.submit_button:hover{
+    cursor: pointer;
+}
+
+.cancel_button{
+    border: none;
+    border-radius: 3px;
+    width: 60px;
+    height: 30px;
+    font-size: 20px;
+    color: black;
+    background-color: rgb(233, 233, 233);
+    margin-left: 10px;
+}
+.cancel_button:hover{
+    cursor: pointer;
+}
