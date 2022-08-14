@@ -1,27 +1,69 @@
+function XSSCheck(str, level) {
+  if (level == undefined || level == 0) {
+    str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+  } else if (level != undefined && level == 1) {
+    str = str.replace(/\</g, "&lt;");
+    str = str.replace(/\>/g, "&gt;");
+  }
+  return str;
+}
+
 function post_articledetail() {
   var token = localStorage.getItem("access");
 
   let article_category = $("#article_category").val();
+  if (article_category.length == 0) {
+    alert("역할을 선택해주세요");
+    return;
+  }
   let farm_name = $("#farm_name").val();
+  if (farm_name.length < 2) {
+    alert("농장 이름은 2글자 이상 입력해주세요");
+    return;
+  }
   let location = $("#sample4_roadAddress").val();
+  if (location.length == 0) {
+    alert("주소를 입력해주세요");
+    return;
+  }
   let title = $("#title").val();
+  if (title.length < 4) {
+    alert("제목은 4글자 이상 입력해주세요");
+    return;
+  }
   let cost = $("#cost").val();
+  if (cost.length == 0) {
+    alert("금액을 입력해주세요");
+    return;
+  }
   let requirement = $("#requirement").val();
+  if (requirement.length == 0) {
+    alert("모집 요건을 입력해주세요");
+    return;
+  }
   let period = $("#period").val();
+  if (period.length == 0) {
+    alert("활동 기간을 입력해주세요");
+    return;
+  }
   let desc = $("#desc").val();
+  if (desc.length == 0) {
+    alert("세부 내용을 입력해주세요");
+    return;
+  }
   let img1 = $("#img")[0].files[0];
   let img2 = $("#img2")[0].files[0];
   let img3 = $("#img3")[0].files[0];
   let form_data = new FormData();
 
   form_data.append("article_category", article_category);
-  form_data.append("farm_name", farm_name);
-  form_data.append("location", location);
-  form_data.append("title", title);
-  form_data.append("cost", cost);
-  form_data.append("requirement", requirement);
-  form_data.append("period", period);
-  form_data.append("desc", desc);
+  form_data.append("farm_name", XSSCheck(farm_name));
+  form_data.append("location", XSSCheck(location, 1));
+  form_data.append("title", XSSCheck(title, 1));
+  form_data.append("cost", XSSCheck(cost, 1));
+  form_data.append("requirement", XSSCheck(requirement, 1));
+  form_data.append("period", XSSCheck(period, 1));
+  form_data.append("desc", XSSCheck(desc, 1));
   form_data.append("img1", img1);
   form_data.append("img2", img2);
   form_data.append("img3", img3);
@@ -40,7 +82,7 @@ function post_articledetail() {
     processData: false,
 
     error: function () {
-      alert("error");
+      alert("게시글 등록 실패!");
       location.reload();
     },
     success: function () {

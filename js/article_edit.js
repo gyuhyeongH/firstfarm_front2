@@ -1,3 +1,13 @@
+function XSSCheck(str, level) {
+  if (level == undefined || level == 0) {
+    str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+  } else if (level != undefined && level == 1) {
+    str = str.replace(/\</g, "&lt;");
+    str = str.replace(/\>/g, "&gt;");
+  }
+  return str;
+}
+
 $(document).ready(function () {
   article_id = window.localStorage.getItem("article_id");
   get_articledetail(article_id);
@@ -16,22 +26,15 @@ function get_articledetail(article_id) {
       let period = response["period"];
       let requirement = response["requirement"];
       let desc = response["desc"];
-      let img1 = response["img1"];
-      let img2 = response["img2"];
-      let img3 = response["img3"];
       let article_category = response["article_category"];
 
       let temp_detail_value;
 
       temp_detail_value = `
-        <div class="category_box">
-          <div class="category_title">카테고리 선택</div>
-          <div class="category_input_box">
-              <button class="category_button" id="category1">체험</button>
-              <button class="category_button" id="category2">근무</button>
-              <input class="category_input" type="text" id="article_category" name="article_category" value="${article_category}">
-          </div>
+        <div class="category_hidden_box">
+            <input class="category_input" type="text" id="article_category" name="article_category" value="${article_category}">
         </div>
+          
         <div class="name_box" id="name">
             <div class="name_title">농장 이름</div>
             <div class="name_input_box">
@@ -89,20 +92,59 @@ function get_articledetail(article_id) {
 function put_articledetail(article_id) {
   var token = localStorage.getItem("access");
 
+  let article_category = $("#article_category").val();
+  if (article_category.length == 0) {
+    alert("역할을 선택해주세요");
+    return;
+  }
   let title = $("#edit_title").val();
+  if (title.length < 4) {
+    alert("제목은 4글자 이상 입력해주세요");
+    return;
+  }
   let farm_name = $("#edit_farm_name").val();
+  if (farm_name.length < 2) {
+    alert("농장 이름은 2글자 이상 입력해주세요");
+    return;
+  }
   let location = $("#sample4_roadAddress").val();
+  if (location.length == 0) {
+    alert("주소를 입력해주세요");
+    return;
+  }
   let cost = $("#edit_cost").val();
+  if (cost.length == 0) {
+    alert("금액을 입력해주세요");
+    return;
+  }
   let period = $("#edit_period").val();
+  if (period.length == 0) {
+    alert("활동 기간을 입력해주세요");
+    return;
+  }
   let requirement = $("#edit_requirement").val();
+  if (requirement.length == 0) {
+    alert("모집 요건을 입력해주세요");
+    return;
+  }
   let desc = $("#edit_desc").val();
+  if (desc.length == 0) {
+    alert("세부 내용을 입력해주세요");
+    return;
+  }
   let img1 = $("#img")[0].files[0];
   let img2 = $("#img2")[0].files[0];
   let img3 = $("#img3 ")[0].files[0];
-  let article_category = $("#articlecategory").val();
-
   let form_data = new FormData();
 
+  form_data.append("article_category", article_category);
+  form_data.append("farm_name", XSSCheck(farm_name));
+  form_data.append("location", XSSCheck(location, 1));
+  form_data.append("title", XSSCheck(title, 1));
+  form_data.append("cost", XSSCheck(cost, 1));
+  form_data.append("requirement", XSSCheck(requirement, 1));
+  form_data.append("period", XSSCheck(period, 1));
+  form_data.append("desc", XSSCheck(desc, 1));
   form_data.append("img1", img1);
   form_data.append("img2", img2);
   form_data.append("img3", img3);
@@ -114,16 +156,10 @@ function put_articledetail(article_id) {
       // xhr.setRequestHeader("Content-type", "application/json");
       xhr.setRequestHeader("Authorization", "Bearer " + token);
     },
-    data: {
-      title: title,
-      farm_name: farm_name,
-      location: location,
-      cost: cost,
-      period: period,
-      requirement: requirement,
-      desc: desc,
-      article_category: article_category,
-    },
+    data: form_data,
+    cache: false,
+    contentType: false,
+    processData: false,
 
     success: function (response) {
       alert("업데이트 완료");
