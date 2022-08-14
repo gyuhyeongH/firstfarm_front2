@@ -86,7 +86,7 @@ function get_article(choice) {
                 let img1 = response[i]["img1"];
                 if (img1 == null) {
                     img1 =
-                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
+                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/%E1%84%91%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%91%E1%85%A1%E1%86%B73.png";
                 }
                 let period = response[i]["period"];
                 let exposure_end_date = response[i]["exposure_end_date"].substr(0, 10);
@@ -151,7 +151,7 @@ function search_articles() {
                 let img1 = response[i]["img1"];
                 if (img1 == null) {
                     img1 =
-                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
+                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/%E1%84%91%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%91%E1%85%A1%E1%86%B73.png";
                 }
                 let period = response[i]["period"];
                 let exposure_end_date = response[i]["exposure_end_date"].substr(0, 10);
