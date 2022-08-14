@@ -1,178 +1,373 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE HTML>
+<!--
+	Phantom by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 
 <head>
-    <meta charset="UTF-8">
+	<title>첫농 | 농장 검색</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="assets/css/main_article.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+		</script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <title>첫농 | 농장 검색</title>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-        </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <link rel="stylesheet" href="/css/nav.css" />
-    <link rel="stylesheet" href="/css/search_article.css" />
+	<link rel="stylesheet" href="/css/search_article.css" />
 </head>
 
-<body style="background-color: #FCF8E8;">
-    <header style="z-index: 1000;">
-        <nav class="navbar fixed-top navbar-light" style="background-color: #C7D36F; padding-top: 0; padding-bottom: 0;"
-            id="navigationBar">
-            <ul>
-                <li>
-                    <a href="index.html" class="link">소개</a>
-                </li>
-                <li>
-                    <a href="search_article.html" class="link">알바 / 체험 찾기</a>
-                </li>
-                <li>
-                    <a href="articleupload.html" class="link" id="a_article">공고 등록</a>
-                </li>
-            </ul>
-            <ul>
-                <li>
-                    <a id="a_logout" style="float:right; margin-right:15px;" onclick="handle_logout()">
-                        로그아웃
-                    </a>
-                </li>
-                <li>
-                    <a id="a_mypage" style="float:right;" onclick="handle_enter_mypage()" class="link">
-                        마이페이지
-                    </a>
-                </li>
-                <li>
-                    <a id="a_signup" style="float:right; margin-right: 15px;" class="nav-signup" href="signup.html">
-                        회원가입
-                    </a>
-                </li>
-                <li>
-                    <a id="a_login" style="float:right" class="nav-signin" href="signin.html">
-                        로그인
-                    </a>
-                </li>
-            </ul>
-        </nav>
-    </header>
-    <div class="main">
-        <nav style="margin-top: 100px;z-index: 1000; background-color: #E0DECA;">
+<body class="is-preload">
+	<!-- Wrapper -->
+	<div id="wrapper">
+		<a href="index.html" class="logo">
+			<img style="margin-top:50px; margin-left:50px; width: 150px; height: 150px;" src="./img/first_farm_logo.png"
+				alt="" />
+		</a>
+		<!-- Header -->
+		<header id="header">
+			<div class="inner">
 
-            <ul class=" nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link onclick" data-bs-toggle="tab" type="button" name="">전체</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link onclick" data-bs-toggle="tab" type="button" value="1">일자리</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link onclick" data-bs-toggle="tab" type="button" value="2">체험</button>
-                </li>
-                <li class="nav-item" role="presentation">
-                    <button class="nav-link onclick" data-bs-toggle="tab" type="button" value="3">추천</button>
-                </li>
-            </ul>
-        </nav>
+				<!-- Logo -->
 
-        <div class=" search_box">
+				<!-- Nav -->
+				<nav>
+					<ul>
+						<li><a href="#menu">Menu</a></li>
+					</ul>
+				</nav>
 
-            <p class="botton_row" style="margin-top: 13px;"><button class="w-btn-outline w-btn-gray-outline onclick"
-                    type="button" name='서울'>
-                    전체
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    서울
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    경기
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    인천
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    강원
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    대전
-                </button>
-            </p>
-            <p class="botton_row"><button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    세종
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    충남
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    충북
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    부산
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    울산
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    경남
-                </button>
-            </p>
-            <p class="botton_row"><button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    경북
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    대구
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    광주
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    전남
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    전북
-                </button>
-                <button class="w-btn-outline w-btn-gray-outline onclick" type="button">
-                    제주
-                </button>
-            </p>
+			</div>
+		</header>
 
-        </div>
-        <div class="seach_bar">
-            <input type="text" class="searchTerm" placeholder="제목 or 내용 검색" id="search_text" name="search_text">
-            <button type="button" class="searchButton" onclick="search_articles()">검색</button>
-        </div>
+		<!-- Menu -->
+		<nav id="menu">
 
-        <div class="explanation">
-            <div class="contents">지역</div>
-            <div class="contents">모집 제목</div>
-            <div class="contents">급여</div>
-            <div class="contents">근무날짜</div>
-            <div class="contents">등록일</div>
-        </div>
+			<h2></h2>
+			<ul>
+				<li><a href="index.html">소개</a></li>
+				<li><a href="search_article.html">알바 / 체험 찾기</a></li>
+				<li><a href="generic.html">공고 등록</a></li>
+				<li><a href="generic.html">마이 페이지</a></li>
+				<li><a href="signin.html">로그인</a></li>
+			</ul>
+		</nav>
 
-        <div id="get_article">
-            <div class="articles">
-                <div class="contents">
-                    1
-                </div>
-                <div class="contents">
-                    2
-                </div>
-                <div class="contents">
-                    3
-                </div>
-                <div class="contents">
-                    4
-                </div>
-                <div class="contents">
-                    5
-                </div>
-            </div>
+		<!-- Main -->
+		<div id="main" style="margin-top:-120px">
+			<div class="inner">
+				<header>
+					<nav style="height:45px;">
 
-            <script src="js/search_article.js"> </script>
-            <script src="./js/nav.js"></script>
+						<ul class=" nav nav-tabs" id="myTab" role="tablist">
+							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
+								<button
+									style="height:45px;width:80px;font-size: 14px;margin-left:-11px; margin-top:-1px; border-radius:0; border-bottom:white;text-align:center"
+									class="nav-link onclick" data-bs-toggle="tab" type="button" name="">전체</button>
+							</li>
+							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
+								<button
+									style="height:45px;width:80px;font-size: 14px;margin-left:-12px; margin-top:-1px;text-overflow: inherit; border-radius:0"
+									class="nav-link onclick" data-bs-toggle="tab" type="button" value="1">일자리</button>
+							</li>
+							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
+								<button
+									style="height:45px;width:80px;font-size: 14px;margin-left:-13px; margin-top:-1px; border-radius:0"
+									class="nav-link onclick" data-bs-toggle="tab" type="button" value="2">체험</button>
+							</li>
+							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
+								<button
+									style="height:45px;width:80px;font-size: 14px;margin-left:-13px; margin-top:-1px; border-radius:0"
+									class="nav-link onclick" data-bs-toggle="tab" type="button" value="3">추천</button>
+							</li>
+						</ul>
+					</nav>
+					<div class="search_box">
+
+						<p class="botton_row" style="margin-top: 13px;">
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button" name='서울'>
+								전체
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								서울
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								경기
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								인천
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								강원
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								대전
+							</button>
+						</p>
+						<p class="botton_row"><button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								세종
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								충남
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								충북
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								부산
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								울산
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								경남
+							</button>
+						</p>
+						<p class="botton_row"><button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								경북
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								대구
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								광주
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								전남
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								전북
+							</button>
+							<button class="onclick"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								type="button">
+								제주
+							</button>
+						</p>
+
+					</div>
+					<div style="height: 70px;position: relative;display: flex;justify-content: right;">
+						<input type="text" class="searchTerm" placeholder="제목 or 내용 검색" id="search_text"
+							name="search_text">
+						<button type="button" class="searchButton" id="search_button"
+							onclick="search_articles()">검색</button>
+					</div>
+				</header>
+
+				<section class="tiles" id="get_article">
+					<article class="style1">
+						<span class="image">
+							<img src="images/pic01.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Magna</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style2">
+						<span class="image">
+							<img src="images/pic01.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>포도 농장에 어서 오세요~</h2>
+							<div class="content">
+								<p>지역:부산 강서구 가달1로 33<br>
+
+									설명:딸기좋아하시는분<br>
+									급여:무료<br>
+									근무날짜:주말 하루!<br>
+									등록일:2000-11-11</p>
+							</div>
+						</a>
+					</article>
+					<article class="style2">
+						<span class="image">
+							<img src="images/pic02.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Lorem</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style3">
+						<span class="image">
+							<img src="images/pic03.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Feugiat</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style4">
+						<span class="image">
+							<img src="images/pic04.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Tempus</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style5">
+						<span class="image">
+							<img src="images/pic05.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Aliquam</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style6">
+						<span class="image">
+							<img src="images/pic06.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Veroeros</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style2">
+						<span class="image">
+							<img src="images/pic07.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Ipsum</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style3">
+						<span class="image">
+							<img src="images/pic08.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Dolor</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style1">
+						<span class="image">
+							<img src="images/pic09.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Nullam</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style5">
+						<span class="image">
+							<img src="images/pic10.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Ultricies</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style6">
+						<span class="image">
+							<img src="images/pic11.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Dictum</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+					<article class="style4">
+						<span class="image">
+							<img src="images/pic12.jpg" alt="" />
+						</span>
+						<a href="generic.html">
+							<h2>Pretium</h2>
+							<div class="content">
+								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+							</div>
+						</a>
+					</article>
+				</section>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer id="footer">
+			<div class="inner">
+				<ul class="copyright">
+					<li>&copy; ICDW</li>
+					<li>황규형 김휘수 이동현 임주영</li>
+				</ul>
+			</div>
+		</footer>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+	<script src="js/search_article.js"> </script>
 </body>
-
 
 </html>

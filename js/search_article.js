@@ -83,33 +83,37 @@ function get_article(choice) {
                 let title = response[i]["title"];
                 let location = response[i]["location"];
                 let cost = response[i]["cost"];
+                let img1 = response[i]["img1"];
+                if (img1 == null) {
+                    img1 =
+                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
+                }
+                let period = response[i]["period"];
                 let exposure_end_date = response[i]["exposure_end_date"].substr(0, 10);
                 let updated_at = response[i]["updated_at"].substr(0, 10);
-                let temp_article = `<a href="articledetail.html" onclick="storage_id(${id})" class="article_link">
-                    <div class="articles">
-                    <div class="contents">
-                        ${location}
-                    </div>
-                    <div class="contents">
-                    ${title}
-                    </div>
-                    <div class="contents">
-                    ${cost}
-                    </div>
-                    <div class="contents">
-                    ${exposure_end_date}
-                    </div>
-                    <div class="contents">
-                    ${updated_at}
-                    </div>
-                </div></a>`;
+                let temp_article = `<article class="style1">
+                <span class="image">
+                    <img src="${img1}" style="height:405px; width:405px;" alt="" />
+                </span>
+                <a href="articledetail.html" onclick="storage_id(${id})">
+                    <h2>${title}</h2>
+                    <div class="content">
+                        <p><br>
+                        지역 : ${location}<br>
+                        급여 : ${cost}<br>
+                        참여 일자 : ${period}<br>
+                        모집기간 : ${updated_at} ~ ${exposure_end_date}
+                        </p>
+                        </div>
+                     </a>
+            </article>`;
 
                 $("#get_article").append(temp_article);
             }
         },
         error: function () {
             $("#get_article").empty();
-            let temp_article = '<p>검색 결과 없음</p>'
+            let temp_article = `<div><p>검색 결과 없음</p><div>`
             $("#get_article").append(temp_article);
         }
     });
@@ -144,26 +148,30 @@ function search_articles() {
                 let title = response[i]["title"];
                 let location = response[i]["location"];
                 let cost = response[i]["cost"];
+                let img1 = response[i]["img1"];
+                if (img1 == null) {
+                    img1 =
+                        "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
+                }
+                let period = response[i]["period"];
                 let exposure_end_date = response[i]["exposure_end_date"].substr(0, 10);
                 let updated_at = response[i]["updated_at"].substr(0, 10);
-                let temp_article = `<a href="articledetail.html" onclick="storage_id(${id})" class="article_link">
-                    <div class="articles">
-                    <div class="contents">
-                        ${location}
-                    </div>
-                    <div class="contents">
-                    ${title}
-                    </div>
-                    <div class="contents">
-                    ${cost}
-                    </div>
-                    <div class="contents">
-                    ${exposure_end_date}
-                    </div>
-                    <div class="contents">
-                    ${updated_at}
-                    </div>
-                </div></a>`;
+                let temp_article = `<article class="style1">
+                <span class="image">
+                    <img src="${img1}" style="height:405px; width:405px;" alt="" />
+                </span>
+                <a href="articledetail.html" onclick="storage_id(${id})">
+                    <h2>${title}</h2>
+                    <div class="content">
+                        <p><br>
+                        지역 : ${location}<br>
+                        급여 : ${cost}<br>
+                        참여 일자 : ${period}<br>
+                        모집기간 : ${updated_at} ~ ${exposure_end_date}
+                        </p>
+                        </div>
+                     </a>
+            </article>`;
 
                 $("#get_article").append(temp_article);
             }
@@ -175,3 +183,10 @@ function search_articles() {
         }
     });
 }
+
+$('.searchTerm').keyup('keyup', function (event) {
+    if (event.keyCode === 13) {
+        $('#search_button').click();
+    }
+
+});
