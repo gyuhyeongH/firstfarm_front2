@@ -1,32 +1,221 @@
-/* * {
-   border: 1px solid red;
-} */
-
-
-/*컨셉 색상*/
-
-/*
-UI BASE1
-#C7D36F
-
-UI BASE2
-#FCF9C6
-
-UI BASE3
-#E0DECA
-*/
-
-/* 폰트 링크(주아체, 감자꽃체) */
-@import url('https://fonts.googleapis.com/css2?family=Gamja+Flower&family=Jua&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap');
 
 *{
-    font-family: 'Gamja Flower', cursive;
+    font-family: 'Do Hyeon','Nanum Gothic',sans-serif;
     font-size: 26px;
+    /* border: 1px solid red; */
+}
+
+/* Menu */
+
+#wrapper {
+    -moz-transition: opacity 0.45s ease;
+    -webkit-transition: opacity 0.45s ease;
+    -ms-transition: opacity 0.45s ease;
+    transition: opacity 0.45s ease;
+    opacity: 1;
+}
+
+#menu {
+    -moz-transform: translateX(13em);
+    -webkit-transform: translateX(13em);
+    -ms-transform: translateX(13em);
+    transform: translateX(13em);
+    -moz-transition: -moz-transform 0.45s ease, visibility 0.45s;
+    -webkit-transition: -webkit-transform 0.45s ease, visibility 0.45s;
+    -ms-transition: -ms-transform 0.45s ease, visibility 0.45s;
+    transition: transform 0.45s ease, visibility 0.45s;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 13em;
+    max-width: 80%;
+    height: 100%;
+    -webkit-overflow-scrolling: touch;
+    background: #585858;
+    color: #ffffff;
+    cursor: default;
+    visibility: hidden;
+    z-index: 10002;
+}
+
+    #menu > .inner {
+        -moz-transition: opacity 0.45s ease;
+        -webkit-transition: opacity 0.45s ease;
+        -ms-transition: opacity 0.45s ease;
+        transition: opacity 0.45s ease;
+        -webkit-overflow-scrolling: touch;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        padding: 2.75em;
+        opacity: 0;
+        overflow-y: auto;
+        font-size: 15px;
+    }
+
+        #menu > .inner > ul {
+            list-style: none;
+            margin: 0 0 1em 0;
+            padding: 0;
+        }
+
+            #menu > .inner > ul > li {
+                padding: 0;
+                border-top: solid 1px rgba(255, 255, 255, 0.15);
+            }
+
+                #menu > .inner > ul > li a {
+                    display: block;
+                    padding: 15px 0;
+                    line-height: 1.5;
+                    border: 0;
+                    color: inherit;
+                    font-size: 17px;
+                }
+
+                #menu > .inner > ul > li:first-child {
+                    border-top: 0;
+                    margin-top: -1em;
+                }
+
+    #menu > .close {
+        -moz-transition: opacity 0.45s ease, -moz-transform 0.45s ease;
+        -webkit-transition: opacity 0.45s ease, -webkit-transform 0.45s ease;
+        -ms-transition: opacity 0.45s ease, -ms-transform 0.45s ease;
+        transition: opacity 0.45s ease, transform 0.45s ease;
+        -moz-transform: scale(0.25) rotate(180deg);
+        -webkit-transform: scale(0.25) rotate(180deg);
+        -ms-transform: scale(0.25) rotate(180deg);
+        transform: scale(0.25) rotate(180deg);
+        -webkit-tap-highlight-color: transparent;
+        display: block;
+        position: absolute;
+        top: 2em;
+        left: -6em;
+        width: 6em;
+        text-indent: 6em;
+        height: 3em;
+        border: 0;
+        font-size: 0.6em;
+        opacity: 0;
+        overflow: hidden;
+        padding: 0;
+        white-space: nowrap;
+    }
+
+        #menu > .close:before, #menu > .close:after {
+            -moz-transition: opacity 0.2s ease;
+            -webkit-transition: opacity 0.2s ease;
+            -ms-transition: opacity 0.2s ease;
+            transition: opacity 0.2s ease;
+            content: '';
+            display: block;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: 2em 2em;
+        }
+
+        #menu > .close:before {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23f2849e%3B %7D%3C/style%3E%3Cline x1='15' y1='15' x2='85' y2='85' /%3E%3Cline x1='85' y1='15' x2='15' y2='85' /%3E%3C/svg%3E");
+            opacity: 0;
+        }
+
+        #menu > .close:after {
+            background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Cstyle%3Eline %7B stroke-width: 8px%3B stroke: %23585858%3B %7D%3C/style%3E%3Cline x1='15' y1='15' x2='85' y2='85' /%3E%3Cline x1='85' y1='15' x2='15' y2='85' /%3E%3C/svg%3E");
+            opacity: 1;
+        }
+
+        #menu > .close:hover:before {
+            opacity: 1;
+        }
+
+        #menu > .close:hover:after {
+            opacity: 0;
+        }
+
+    @media screen and (max-width: 736px) {
+
+        #menu {
+            -moz-transform: translateX(16.5em);
+            -webkit-transform: translateX(16.5em);
+            -ms-transform: translateX(16.5em);
+            transform: translateX(16.5em);
+            width: 16.5em;
+        }
+
+            #menu > .inner {
+                padding: 2.75em 1.5em;
+            }
+
+            #menu > .close {
+                top: 0.5em;
+                left: -4.25em;
+                width: 4.25em;
+                text-indent: 4.25em;
+            }
+
+                #menu > .close:before, #menu > .close:after {
+                    background-size: 1.5em 1.5em;
+                }
+
+    }
+
+body.is-menu-visible #wrapper {
+    pointer-events: none;
+    cursor: default;
+    opacity: 0.25;
+}
+
+body.is-menu-visible #menu {
+    -moz-transform: translateX(0);
+    -webkit-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+    visibility: visible;
+}
+
+    body.is-menu-visible #menu > * {
+        opacity: 1;
+    }
+
+    body.is-menu-visible #menu .close {
+        -moz-transform: scale(1.0) rotate(0deg);
+        -webkit-transform: scale(1.0) rotate(0deg);
+        -ms-transform: scale(1.0) rotate(0deg);
+        transform: scale(1.0) rotate(0deg);
+        opacity: 1;
+    }
+
+
+/* 메뉴 */
+.menu_word{
+    position: fixed;
+    top: 50px;
+    right: 50px;
+    text-decoration-line: none;
+}
+
+.menu_img{
+    width: 33px;
+    height: 35px;
+    filter: opacity(0.5) drop-shadow(0 0 0 #585858);
+}
+
+.nav_menu{
+    width: 100px;
 }
 
 /*메인*/
 .main_container{
-    width: 85%;
+    width: 65%;
     margin: auto;
 }
 
@@ -34,15 +223,18 @@ UI BASE3
     width: 100%;
     height: 50px;
     margin: 90px auto 0 auto;
-    font-size: 28px;
     color: white;
+    background-color: #00ff7a;
     margin-bottom: 30px;
     border: none;
-    background-color: #C7D36F;
-
+    
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.title{
+    font-size: 30px;
 }
 
 .top_box{
@@ -72,9 +264,13 @@ UI BASE3
     align-items: center;
 }
 
+.catagory_hidden_box{
+    height: 10px;
+}
+
 .category_input_box{
     width: 80%;
-    height: 100px;
+    height: 10px;
     display: flex;
     justify-content: start;
     align-items: center;
@@ -91,12 +287,14 @@ UI BASE3
 
 
 .clicked {
-    background-color: #C7D36F;
-    color: orangered;
+    background-color: #00ff7a;
+    color: #ffffff;
 }
 
 .category_input{
     display: none;
+    height: 10px;
+    font-size: 5px;
 }
 
 .name_box{
@@ -343,17 +541,24 @@ UI BASE3
 .location_find{
     width: 100px;
     height: 30px;
-    background-color: #FCF9C6;
+    background-color: #00ff7a;
     font-size: 15px;
     border: 0;
     border-radius: 15px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.6);
 }
 
 .location_road{
-    border: none;
-    width: 800px;
+    width: 100%;
     height: 30px;
     font-size: 15px;
+
+    border: 0;
+    border-radius: 15px;
+    outline: none;
+    padding-left: 10px;
+    background-color: rgb(233, 233, 233);
+    margin-left: 10px;
 }
 
 /* 이미지 */
@@ -361,7 +566,7 @@ UI BASE3
     display: flex;
     justify-content: center;
     margin: auto;
-    width: 1300px;
+    width: 100%;
     overflow: auto;
 }
 
@@ -370,7 +575,7 @@ UI BASE3
     width: 400px;
     height: 400px;
     display: flex;
-    margin: 10px    ;
+    margin: 0 5px;
 }
 
 .img_read{
@@ -449,7 +654,7 @@ UI BASE3
     height: 30px;
     font-size: 20px;
     color: white;
-    background-color: #C7D36F;
+    background-color: #585858;
 }
 .submit_button:hover{
     cursor: pointer;
