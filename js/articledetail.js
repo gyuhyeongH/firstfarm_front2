@@ -24,16 +24,15 @@ function get_articledetail(article_id) {
     data: {},
     success: function (response) {
       let review_length = response["article_review"]["rate"].length;
-      for (let i = 0; i < review_length.length; i++) {
+      for (let i = 0; i < review_length; i++) {
         let temp_detail_reviewbox;
-        let temp_detail_reviewimg;
 
-        let rate = response["article_review"]["rate"][0];
-        let content = response["article_review"]["content"][0];
-        let review_user = response["article_review"]["review_user"][0];
-        let review_img1 = response["article_review"]["review_img"][0];
-        let review_img2 = response["article_review"]["review_img"][1];
-        let review_img3 = response["article_review"]["review_img"][2];
+        let rate = response["article_review"]["rate"][i];
+        let content = response["article_review"]["content"][i];
+        let review_user = response["article_review"]["review_user"][i];
+        let review_img1 = response["article_review"]["review_img"][0 + 3 * i];
+        let review_img2 = response["article_review"]["review_img"][1 + 3 * i];
+        let review_img3 = response["article_review"]["review_img"][2 + 3 * i];
         if (rate == 1) {
           rate = "⭐️";
         } else if (rate == 2) {
@@ -50,7 +49,7 @@ function get_articledetail(article_id) {
         <div class="review_box">
             <div class="review_rate">${rate}</div>
             <div class="review_user">
-                <button class="review_user_button">${review_user}</button>
+                <button class="review_user_button"><div class="review_user_button_word">${review_user}</div></button>
             </div>
             <div class="review_content">${content}</div>
         </div>
@@ -79,6 +78,16 @@ function get_articledetail(article_id) {
         }
       }
 
+      let review_img = response["article_review"]["review_img"][0];
+
+      if (review_img == undefined) {
+        $("#left_button").hide();
+        $("#right_button").hide();
+      } else {
+        $("#left_button").show();
+        $("#right_button").show();
+      }
+
       let apply_user = response["apply"];
       let article_user = response["user"];
       let farm_name = response["farm_name"];
@@ -91,32 +100,38 @@ function get_articledetail(article_id) {
       let img1 = response["img1"];
       let img2 = response["img2"];
       let img3 = response["img3"];
-
-      if (img1 == null) {
-        img1 =
-          "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
-      }
-
-      if (img2 == null) {
-        img2 =
-          "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
-      }
-
-      if (img3 == null) {
-        img3 =
-          "https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/output2_2slvTP3.jpg";
-      }
-
       let article_category = response["article_category"];
       let phone_number = response["phone_number"]["phone_number"];
       let rank = response["rank"]["rank"];
 
       let temp_detail_titlebox;
-      let temp_detail_img;
+      let temp_detail_img1;
+      let temp_detail_img2;
+      let temp_detail_img3;
       let temp_detail_topbox;
       let temp_detail_bottombox;
       let temp_detail_userbutton;
       let temp_detail_farmbutton;
+      let temp_detail_descbox;
+
+      const payload = JSON.parse(localStorage.getItem("payload"));
+
+      if (localStorage.getItem("payload") != null) {
+        if (user == article_user) {
+          temp_detail_userbutton = `
+          
+        `;
+        } else if (apply_user & (payload.category == 2)) {
+          temp_detail_userbutton = `
+          <button class="apply_btn" onclick="delete_article_apply(${article_id})"><div class="apply_btn_word">취소하기</div></button>
+        `;
+        } else if (payload.category == 2) {
+          temp_detail_userbutton = `
+          <button class="apply_btn" onclick="post_article_apply(${article_id})"><div class="apply_btn_word">신청하기</div></button>
+        `;
+        }
+      }
+      $("#user_button").append(temp_detail_userbutton);
 
       if (article_category == 1) {
         article_category = "체험";
@@ -128,35 +143,13 @@ function get_articledetail(article_id) {
         if (user == article_user) {
           temp_detail_farmbutton = `
           <button class="edit_btn"> <a class="edit_btn_word" href="/article_edit.html">수정하기</a></button>
-          <button class="end_btn" onclick="delete_articledetail(${article_id})"> 모집마감</button>
+          <button class="end_btn" onclick="delete_articledetail(${article_id})"><div class="end_btn_word">모집마감</div></button>
           `;
         } else {
           temp_detail_farmbutton = ``;
         }
       }
       $("#farm_button").append(temp_detail_farmbutton);
-
-      if (localStorage.getItem("payload") != null) {
-        if (user == article_user) {
-          temp_detail_userbutton = `
-          <button class="roadmap_btn"><a class="roadmap_btn_word"
-                  href="https://map.kakao.com/link/search/${location}">길찾기</a></button>
-        `;
-        } else if (apply_user) {
-          temp_detail_userbutton = `
-          <button class="roadmap_btn"><a class="roadmap_btn_word"
-                  href="https://map.kakao.com/link/search/${location}">길찾기</a></button>
-          <button class="apply_btn" onclick="delete_article_apply(${article_id})"> 취소하기</button>
-        `;
-        } else {
-          temp_detail_userbutton = `
-          <button class="roadmap_btn"><a class="roadmap_btn_word"
-                  href="https://map.kakao.com/link/search/${location}">길찾기</a></button>
-          <button class="apply_btn" onclick="post_article_apply(${article_id})"> 신청하기</button>
-        `;
-        }
-      }
-      $("#user_button").append(temp_detail_userbutton);
 
       temp_detail_titlebox = `
       <div class="title" >
@@ -165,18 +158,39 @@ function get_articledetail(article_id) {
       `;
       $("#title_box").append(temp_detail_titlebox);
 
-      temp_detail_img = `
-        <ul class="slides">
-            <li><img src="${img1}" width="300" height="300" alt=""></li>
-            <li><img src="${img2}" width="300" height="300" alt=""></li>
-            <li><img src="${img3}" width="300" height="300" alt=""></li>
-        </ul>
-        <p class="controller">
-            <span class="prev">&lang;</span>
-            <span class="next">&rang;</span>
-        </p>
-        `;
-      $("#slideShow").append(temp_detail_img);
+      if (img1 != undefined) {
+        temp_detail_img1 = `
+          <li><img class="up_img" src="${img1}" width="300px" height="300px" alt=""></li>
+          `;
+        $("#slideImg").append(temp_detail_img1);
+      } else if (img1 == undefined) {
+        temp_detail_img1 = `
+          <li><img class="up_img" src="https://s3.ap-northeast-2.amazonaws.com/firstfarm-media/img/%E1%84%91%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%B3%E1%84%91%E1%85%A1%E1%86%B73.png" width="300px" height="300px" alt=""></li>
+          `;
+        $("#slideImg").append(temp_detail_img1);
+      }
+
+      if (img2 != undefined) {
+        temp_detail_img2 = `
+          <li><img class="up_img" src="${img2}" width="300px" height="300px" alt=""></li>
+          `;
+        $("#slideImg").append(temp_detail_img2);
+      }
+
+      if (img3 != undefined) {
+        temp_detail_img3 = `
+          <li><img class="up_img" src="${img3}" width="300px" height="300px" alt=""></li>
+          `;
+        $("#slideImg").append(temp_detail_img3);
+      }
+
+      if ((img2 == undefined) & (img3 == undefined)) {
+        $("#img_move1").hide();
+        $("#img_move2").hide();
+      } else {
+        $("#img_move1").show();
+        $("#img_move2").show();
+      }
 
       // 게시글 이미지 슬라이드
       const slides = document.querySelector(".slides"); //전체 슬라이드 컨테이너
@@ -218,43 +232,53 @@ function get_articledetail(article_id) {
       <div class="left_name_box">
           <button class="left_name_button">${farm_name}</button>
       </div>
-      <div class="left_rate_box">
-          <button class="left_rate_button">⭐ ${rank} ⭐</button>
+      <div class="right_rank-intro_title">
+        <button class="right_rank-intro_title_button"># ${article_category}</button>
       </div>
-      <div class="left_userinfo_box"> ☎️ ${phone_number}</div>
+      <div class="left_rate_box">
+      <button class="left_rate_button">🎖 ${rank}</button>
+      </div>
+      <div class="left_userinfo_box"> 
+        <button class="left_userinfo_button">📞 ${phone_number}</button>
+      </div>
       `;
       $("#top_box").append(temp_detail_topbox);
 
       temp_detail_bottombox = `
-      <div class="right_rank-intro_box">
-          <div class="right_rank-intro_title">
-              <button class="right_rank-intro_title_button">${article_category}</button>
-          </div>
-          <div class="right_rank-intro_content">${rank}🍀</div>
-      </div>
       <div class="right_period_box">
+          <div class="calendar">⏱</div>
           <div class="right_period_title">
               <button class="right_period_title_button">활동 기간</button>
           </div>
           <div class="right_period_content">${period}</div>
       </div>
-      <div class="right_location_box">
-          <div class="right_location_title">
-              <button class="right_location_title_button">위치</button>
-          </div>
-          <div class="right_location_content">${location}</div>
-      </div>
+      
       <div class="right_requirement_box">
+          <div class="requirement">📌</div>
           <div class="right_requirement_title">
               <button class="right_requirement_title_button">모집 요건</button>
           </div>
           <div class="right_requirement_content">${requirement}</div>
       </div>
       <div class="right_cost_box">
+          <div class="cost">💰</div>
           <div class="right_cost_title">
               <button class="right_cost_title_button">금액</button>
           </div>
           <div class="right_cost_content">${cost}</div>
+      </div>
+      
+      `;
+      $("#bottom_box").append(temp_detail_bottombox);
+
+      temp_detail_descbox = `
+      <div class="right_location_box">
+          <div class="right_location_title">
+              <button class="right_location_title_button">위치</button>
+          </div>
+          <div class="right_location_content">${location}</div>
+          <button class="roadmap_btn ani"><a target="_blank" class="roadmap_btn_word"
+                  href="https://map.kakao.com/link/search/${location}">길찾기</a></button>
       </div>
       <div class="right_desc_box">
           <div class="right_desc_title">
@@ -263,7 +287,7 @@ function get_articledetail(article_id) {
           <div class="right_desc_content">${desc}</div>
       </div>
       `;
-      $("#bottom_box").append(temp_detail_bottombox);
+      $("#desc_box").append(temp_detail_descbox);
 
       //리뷰 이미지 슬라이드
       var reviewslides = document.querySelector(".reviewslides"),
