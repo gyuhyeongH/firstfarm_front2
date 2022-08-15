@@ -8,6 +8,16 @@
 
 /* Menu */
 
+.menu_menu{
+    font-size: 22px;
+    margin-bottom: 130px;
+}
+
+.btn_hover:hover{
+    cursor: pointer;
+    color: #C7D36F;
+}
+
 #wrapper {
     -moz-transition: opacity 0.45s ease;
     -webkit-transition: opacity 0.45s ease;
@@ -53,7 +63,7 @@
         padding: 2.75em;
         opacity: 0;
         overflow-y: auto;
-        font-size: 15px;
+        font-size: 17px;
     }
 
         #menu > .inner > ul {
@@ -73,7 +83,8 @@
                     line-height: 1.5;
                     border: 0;
                     color: inherit;
-                    font-size: 17px;
+                    text-decoration-line: none;
+                    font-size: 20px;
                 }
 
                 #menu > .inner > ul > li:first-child {
