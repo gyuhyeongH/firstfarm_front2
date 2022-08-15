@@ -383,9 +383,9 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-                    window.location.replace(`http://127.0.0.1:5000/farm.html`);
+                    window.location.replace(`http://hwisu.shop/farm.html`);
                 } else {
-                    window.location.replace(`http://127.0.0.1:5000/farmer.html`);
+                    window.location.replace(`http://hwisu.shop/farmer.html`);
                 }
             }
         },
