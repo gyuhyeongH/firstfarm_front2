@@ -413,18 +413,13 @@ function get_review() {
                 let created_at = response[i]['created_at'].split('T')[0]
                 let updated_at = response[i]['updated_at'].split('T')[0]
                 let star = get_star(rate)
-                let img_print = [img1,img2,img3]
-
-<<<<<<< HEAD
-                if (img1 == undefined || img1 == null || img2 == undefined || img2 == null || img3 == undefined || img3 == null) {
-=======
-                for(let j=0;j<3;j++){
-                    if(img_print[j] == undefined || img_print[j] == null){
+                let img_print = [img1, img2, img3]
+                for (let j = 0; j < 3; j++) {
+                    if (img_print[j] == undefined || img_print[j] == null) {
                         img_print.splice(j) // 없는 이미지는 삭제
                     }
                 }
-                if(img1 == undefined || img1 == null && img2 == undefined || img2 == null && img3 == undefined || img3 == null){
->>>>>>> 33a8bd6ec4feecdf21c207d8a26449f9626adb22
+                if (img1 == undefined || img1 == null && img2 == undefined || img2 == null && img3 == undefined || img3 == null) {
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
@@ -490,13 +485,8 @@ function get_review() {
                     </div>
                     `;
                     $('#review_put_box').append(temp_put);
-<<<<<<< HEAD
                 } else {
                     let temp_review = `
-=======
-                    }else{
-                        let temp_review =`
->>>>>>> 33a8bd6ec4feecdf21c207d8a26449f9626adb22
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
                                 <div class="image featured" id="review_imageimage${review_id}">
@@ -515,21 +505,16 @@ function get_review() {
                             </article>
                         </div>
                         `;
-<<<<<<< HEAD
                     $('#reviewreview').append(temp_review);
-                    let temp_put = `
-=======
-                        $('#reviewreview').append(temp_review);
 
-                            for(let j=0;j<img_print.length;j++){
-                                let temp_reviewimageimage = `
+                    for (let j = 0; j < img_print.length; j++) {
+                        let temp_reviewimageimage = `
                                 <img src="img_print[${j}]" alt="review_img" />
                             `;
-                            $('#review_imageimage${review_id}').append(temp_reviewimageimage)
-                            }
-                        }
-                        let temp_put =`
->>>>>>> 33a8bd6ec4feecdf21c207d8a26449f9626adb22
+                        $('#review_imageimage${review_id}').append(temp_reviewimageimage)
+                    }
+                }
+                let temp_put = `
                         <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -573,15 +558,10 @@ function get_review() {
                             </div>
                         </div>
                         `;
-<<<<<<< HEAD
-                    $('#review_put_box').append(temp_put);
-
-=======
-                        $('#review_put_box').append(temp_put);
->>>>>>> 33a8bd6ec4feecdf21c207d8a26449f9626adb22
-                }
-
+                $('#review_put_box').append(temp_put);
             }
+
+        }
     })
 }
 /* 리뷰 작성 */
