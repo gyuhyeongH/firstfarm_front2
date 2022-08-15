@@ -40,7 +40,15 @@ function get_farmer() {
             xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: {},
+
         success: function (response) {
+            let temp_put_info = `
+            <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+            style="width: 30%; float: right;">
+           저장
+           </a>
+            `;
+            $('#button_box').append(temp_put_info);
             if (response.length > 0) {
                 let rank = response[0]['userinfo']['rank']
                 let birthday = response[0]['userinfo']['birthday']
@@ -128,15 +136,16 @@ function get_farmer() {
                     `;
                     $('#top').append(temp_container);
                 }
-                let temp_put_info = `
-                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
-                style="width: 30%; float: right;">
-               저장
-               </a>
-                `;
-                $('#button_box').append(temp_put_info);
-
                 /* 다녀온 공고 */
+
+                let temp_article_review = `
+                    <h1>다녀온 농장</h1>
+                    <p>농장지기님들과 함께한 시간들을 확인해 보세요 :)</p>
+                `;
+                $('#plus_name').append(temp_article_review);
+
+                $('#review_post_box').empty();
+                $('#articlearticle').empty();
                 for (let i = 0; i < response.length; i++) {
                     let article_id = response[i]['articleinfo']['article_id']
                     let farmname = response[i]['articleinfo']['farm_name']
@@ -147,6 +156,39 @@ function get_farmer() {
                     let period = response[i]['articleinfo']['period']
                     let img1 = response[i]['articleinfo']['img1']
                     let review_dup = response[i]['reviewinfo']
+                    let temp_post_button = `                                   
+                    <div id="article_review_post${article_id}" class="hide">
+                        <div class="col-12">
+                        <textarea name="content" id="review_content" placeholder="후기 내용"
+                            style="width:80%;height:100%;"></textarea>
+                        </div>
+                        <div class="col-12" style="margin-bottom: 25px;">
+                            <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
+                            <div>
+                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div>
+                                <select class="form-select" id="post-select" aria-label="rate"
+                                    style="margin-bottom: 25px;">
+                                    <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
+                                    <option value="1">⭐️</option>
+                                    <option value="2">⭐️⭐️</option>
+                                    <option value="3">⭐️⭐️⭐️</option>
+                                    <option value="4">⭐️⭐️⭐️⭐️</option>
+                                    <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12" id="post_review_button">
+                            <a onclick="post_review(${article_id})" title="Button push blue/green"
+                            class="button btnPush btnBlueGreen">후기 작성</a>
+                        </div>
+                    </div>
+                    `;
+                    $('#review_post_box').append(temp_post_button);
+
                     if (img1 == undefined || img1 == null) {
                         if (review_dup == true) {
                             let temp_article_review = `
@@ -167,38 +209,7 @@ function get_farmer() {
                             </div>
                             `;
                             $('#articlearticle').append(temp_article_review);
-                            let temp_post_button = `                                   
-                            <div id="article_review_post${article_id}" class="hide">
-                                <div class="col-12">
-                                <textarea name="content" id="review_content" placeholder="후기 내용"
-                                    style="width:80%;height:100%;"></textarea>
-                                </div>
-                                <div class="col-12" style="margin-bottom: 25px;">
-                                    <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
-                                    <div>
-                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <select class="form-select" id="post-select" aria-label="rate"
-                                            style="margin-bottom: 25px;">
-                                            <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
-                                            <option value="1">⭐️</option>
-                                            <option value="2">⭐️⭐️</option>
-                                            <option value="3">⭐️⭐️⭐️</option>
-                                            <option value="4">⭐️⭐️⭐️⭐️</option>
-                                            <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12" id="post_review_button">
-                                    <a onclick="post_review(${article_id})" title="Button push blue/green"
-                                    class="button btnPush btnBlueGreen">후기 작성</a>
-                                </div>
-                            </div>
-                            `;
-                            $('#review_post_box').append(temp_post_button);
+
                         } else {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
@@ -233,45 +244,13 @@ function get_farmer() {
                                         비용 : ${cost} <br />
                                         위치 : ${location} <br />
                                         참여 기간 : ${period}일간<br />
-                                    <a title="Button push blue/green" href="#contact"
-                                    class="button btnPush btnBlueGreen">후기 작성</a>
+                                        <a onclick="document.getElementById('article_review_post${article_id}').classList.remove('hide');" title="Button push blue/green" href="#contact"
+                                        class="button btnPush btnBlueGreen">후기 작성</a>
                                 </article>
                             </div>
                             `;
                             $('#articlearticle').append(temp_article_review);
-                            $('#articlearticle').append(temp_article_review);
-                            let temp_post_button = `                                   
-                            <div id="article_review_post${article_id}" class="hide">
-                                <div class="col-12">
-                                <textarea name="content" id="review_content" placeholder="후기 내용"
-                                    style="width:80%;height:100%;"></textarea>
-                                </div>
-                                <div class="col-12">
-                                    <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
-                                    <div>
-                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
-                                    </div>
-                                </div>
-                                <div class="col-12">
-                                    <div>
-                                        <select class="form-select" id="post-select" aria-label="rate"
-                                            style="margin-bottom: 25px;">
-                                            <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
-                                            <option value="1">⭐️</option>
-                                            <option value="2">⭐️⭐️</option>
-                                            <option value="3">⭐️⭐️⭐️</option>
-                                            <option value="4">⭐️⭐️⭐️⭐️</option>
-                                            <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-12" id="post_review_button">
-                                    <a onclick="document.getElementById('article_review_post${article_id}').classList.remove('hide');" title="Button push blue/green"
-                                    class="button btnPush btnBlueGreen">후기 작성</a>
-                                </div>
-                            </div>
-                            `;
-                            $('#review_post_box').append(temp_post_button);
+
                         } else {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
@@ -294,11 +273,7 @@ function get_farmer() {
                         }
                     }
                 }
-                let temp_article_review = `
-                    <h1>다녀온 농장</h1>
-                    <p>농장지기님들과 함께한 시간들을 확인해 보세요 :)</p>
-                `;
-                $('#plus_name').append(temp_article_review);
+
 
             } else {
                 let rank = response.rank
@@ -393,6 +368,7 @@ function get_farmer() {
                 <p>아직 다녀온 농장이 없어요 🧚</p>
                 `;
                 $('#plus_name').append(temp_article_review);
+
                 let temp_put_info = `
                 <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
                 style="width: 30%; float: right;">

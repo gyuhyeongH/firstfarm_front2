@@ -8,6 +8,16 @@
 
 /* Menu */
 
+.menu_menu{
+    font-size: 22px;
+    margin-bottom: 130px;
+}
+
+.btn_hover:hover{
+    cursor: pointer;
+    color: #C7D36F;
+}
+
 #wrapper {
     -moz-transition: opacity 0.45s ease;
     -webkit-transition: opacity 0.45s ease;
@@ -53,7 +63,7 @@
         padding: 2.75em;
         opacity: 0;
         overflow-y: auto;
-        font-size: 15px;
+        font-size: 17px;
     }
 
         #menu > .inner > ul {
@@ -70,10 +80,11 @@
                 #menu > .inner > ul > li a {
                     display: block;
                     padding: 15px 0;
-                    line-height: 1.5;
+                    line-height: 2;
                     border: 0;
                     color: inherit;
-                    font-size: 17px;
+                    text-decoration-line: none;
+                    font-size: 20px;
                 }
 
                 #menu > .inner > ul > li:first-child {
@@ -231,8 +242,8 @@ body.is-menu-visible #menu {
 }
 
 .symbol_img{
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
 }
 
 .logo_title{
@@ -240,9 +251,12 @@ body.is-menu-visible #menu {
     display: flex;
     align-items: center;
     color: #585858;
-    font-size: 30px;
+    font-size: 21px;
 }
 
+.logo_title:hover{
+    color: #C7D36F;
+}
 .title_box{
     width: 70%;
     margin: 30px auto 0 auto;
