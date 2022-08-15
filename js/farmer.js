@@ -413,23 +413,13 @@ function get_review() {
                 let created_at = response[i]['created_at'].split('T')[0]
                 let updated_at = response[i]['updated_at'].split('T')[0]
                 let star = get_star(rate)
-<<<<<<< HEAD
                 let img_print = [img1, img2, img3]
                 for (let j = 0; j < 3; j++) {
                     if (img_print[j] == undefined || img_print[j] == null) {
                         img_print.splice(j) // 없는 이미지는 삭제
                     }
                 }
-                if (img1 == undefined || img1 == null && img2 == undefined || img2 == null && img3 == undefined || img3 == null) {
-=======
-                let img_print = [img1,img2,img3]
-                for(let j=0;j<3;j++){
-                    if(img_print[j] == undefined || img_print[j] == null){
-                        img_print.splice(j) // 없는 이미지는 삭제
-                    }
-                }
-                if((img1 == undefined || img1 == null) && (img2 == undefined || img2 == null) && (img3 == undefined || img3 == null)){
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
+                if ((img1 == undefined || img1 == null) && (img2 == undefined || img2 == null) && (img3 == undefined || img3 == null)) {
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
@@ -495,19 +485,12 @@ function get_review() {
                     </div>
                     `;
                     $('#review_put_box').append(temp_put);
-<<<<<<< HEAD
+
                 } else {
                     let temp_review = `
-                        <div class="col-4 col-6-medium col-12-small">
-                            <article class="box style2">
-                                <div class="image featured" id="review_imageimage${review_id}">
-=======
-                }else{
-                    let temp_review =`
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
                             <div class="image featured" id="review_imageimage${review_id}">
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
 
                             </div>
                             <h3><a href="./articledetail.html">${article_title}</a></h3>
@@ -525,34 +508,16 @@ function get_review() {
                     `;
                     $('#reviewreview').append(temp_review);
 
-                        for(let j=0;j<img_print.length;j++){
-                            let temp_reviewimageimage = `
-                            <img src="${img_print}[${j}]"alt="review_img" />
-                        `;
-<<<<<<< HEAD
-                    $('#reviewreview').append(temp_review);
-
                     for (let j = 0; j < img_print.length; j++) {
+                        let review_img = img_print[j]
                         let temp_reviewimageimage = `
-                                <img src="img_print[${j}]" alt="review_img" />
-                            `;
-                        $('#review_imageimage${review_id}').append(temp_reviewimageimage)
-                    }
-                }
-                let temp_put = `
-                        <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
-                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">후기 수정</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-=======
-                        $('#review_imageimage'+review_id).append(temp_reviewimageimage);
-                        }
+                            <img src="${review_img}"alt="review_img" />
+                        `;
 
-                    let temp_put =`
+                        $('#review_imageimage' + review_id).append(temp_reviewimageimage);
+                    }
+
+                    let temp_put = `
                     <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -568,7 +533,6 @@ function get_review() {
                                             주세요!</label>
                                         <textarea class="form-control" id="review_content_put"
                                             rows="10"></textarea>
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                                     </div>
                                     <!-- 사진 업로드 -->
                                     <div class="mb-3">
@@ -595,38 +559,28 @@ function get_review() {
                                 </div>
                             </div>
                         </div>
-<<<<<<< HEAD
-                        `;
-                $('#review_put_box').append(temp_put);
-            }
 
-=======
                     </div>
                     `;
                     $('#review_put_box').append(temp_put);
                 }
             }
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
+
         }
     })
 }
 /* 리뷰 작성 */
 function post_review(article_id) {
     var token = localStorage.getItem("access")
-<<<<<<< HEAD
-    let content = $('#review_content').val()
-    let img = $('#formFileMultiple')[0];
+
+    let content = $('#review_content' + article_id).val()
+    let img = $('#formFileMultiple' + article_id)[0];
     if (img.files.length > 3) {
-=======
-    let content = $('#review_content'+article_id).val()
-    let img = $('#formFileMultiple'+article_id)[0];
-    if(img.files.length > 3) {
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
         alert("사진 업로드는 최대 3개까지 가능합니다");
         return;
     }
 
-    let rate = $('#post-select'+article_id).val()
+    let rate = $('#post-select' + article_id).val()
     const formData = new FormData();
     formData.append("img1", img.files[0]);
     formData.append("img2", img.files[1]);
@@ -690,12 +644,9 @@ function put_review(review_id) {
             window.location.reload();
         },
         error: function (response) {
-<<<<<<< HEAD
-            console.log(response)
+
             if (response["message"] == '리뷰 수정 실패!') {
-=======
-            if(response["message"] == '리뷰 수정 실패!' ){
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
+
                 alert("리뷰 수정에 실패했습니다");
             } else {
                 alert("작성자만 리뷰 수정이 가능합니다");
@@ -762,15 +713,10 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-<<<<<<< HEAD
                     window.location.replace(`https://hwisu.shop/farm.html`);
                 } else {
                     window.location.replace(`https://hwisu.shop/farmer.html`);
-=======
-                    window.location.replace(`http://hwisu.shop/farm.html`);
-                } else {
-                    window.location.replace(`http://hwisu.shop/farmer.html`);
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
+
                 }
             }
         },
