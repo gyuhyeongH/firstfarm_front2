@@ -17,7 +17,7 @@ $(document).ready(function () {
     }
 });
 
-async function handle_enter_mypage() {
+function handle_enter_mypage() {
     const payload = JSON.parse(localStorage.getItem("payload"));
     if (payload != null) {
         if (payload.category == 1) {
