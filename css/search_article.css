@@ -50,10 +50,10 @@ body {
 /* 얘를 수정해야함 */
 .searchButton {
     width: 100px;
-    height: 60px;
-    margin-top: 3px;
+    height: 57px;
+    margin-top: -1px;
     text-align: center;
-    border-radius: 0 5px 5px 0;
+    border-radius: 0 0 5px 0;
     cursor: pointer;
     font-size: 15px;
 }
