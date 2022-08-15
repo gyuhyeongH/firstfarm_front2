@@ -22,12 +22,12 @@ function checkInId() {
     error[0].innerHTML = "필수 정보입니다.";
     error[0].style.color = "#FF0000";
     error[0].style.display = "block";
-    error[0].style.position = "fixed";
+    error[0].style.position = "absolute";
   } else if (!idPattern.test(id.value)) {
     error[0].innerHTML = "올바른 형식이 아닙니다.";
     error[0].style.color = "#FF0000";
     error[0].style.display = "block";
-    error[0].style.position = "fixed";
+    error[0].style.position = "absolute";
   } else {
     error[0].innerHTML = "";
     error[0].style.color = "#08A600";
@@ -41,19 +41,19 @@ function checkInPw() {
     error[1].innerHTML = "필수 정보입니다.";
     error[0].style.color = "#FF0000";
     error[1].style.display = "block";
-    error[1].style.position = "fixed";
+    error[1].style.position = "absolute";
   } else if (!pwPattern.test(pw1.value)) {
     error[1].innerHTML = "올바른 형식이 아닙니다.";
     error[0].style.color = "#FF0000";
     error[1].style.display = "block";
-    error[1].style.position = "fixed";
+    error[1].style.position = "absolute";
   } else {
     error[1].style.display = "none";
   }
 }
 
 
-$("#login_form").keypress(function (e) {
+$("#login_form_enter").keypress(function (e) {
   if (e.keyCode === 13) {
     handle_signin();
   }

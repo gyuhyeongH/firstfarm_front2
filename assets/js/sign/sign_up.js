@@ -46,7 +46,7 @@ dd.addEventListener("focusout", isBirthCompleted);
 gender.addEventListener("focusout", function () {
   if (gender.value === "성별") {
     error[5].style.display = "block";
-    error[5].style.position = "fixed";
+    error[5].style.position = "absolute";
 
   } else {
     error[5].style.display = "none";
@@ -62,12 +62,12 @@ function checkId() {
   if (id.value === "") {
     error[0].innerHTML = "필수 정보입니다.";
     error[0].style.display = "block";
-    error[0].style.position = "fixed";
+    error[0].style.position = "absolute";
   } else if (!idPattern.test(id.value)) {
     error[0].innerHTML =
       "5~20자의 영문 소문자, 숫자와 특수기호(_),(-)만 사용 가능합니다.";
     error[0].style.display = "block";
-    error[0].style.position = "fixed";
+    error[0].style.position = "absolute";
   } else {
     error[0].innerHTML = "";
     error[0].style.color = "#08A600";
@@ -81,11 +81,11 @@ function isEmailCorrect() {
   if (email.value === "") {
     error[1].innerHTML = "필수 정보입니다.";
     error[1].style.display = "block";
-    error[1].style.position = "fixed";
+    error[1].style.position = "absolute";
   } else if (!emailPattern.test(email.value)) {
     error[1].innerHTML = "형식에 맞지 않는 이메일입니다.";
     error[1].style.display = "block";
-    error[1].style.position = "fixed";
+    error[1].style.position = "absolute";
   } else {
     error[1].style.display = "none";
   }
@@ -96,41 +96,41 @@ function checkPw() {
   if (pw1.value === "") {
     error[2].innerHTML = "필수 정보입니다.";
     error[2].style.display = "block";
-    error[2].style.position = "fixed";
+    error[2].style.position = "absolute";
   } else if (!pwPattern.test(pw1.value)) {
     error[2].innerHTML = "8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.";
     pwMsg.innerHTML = "사용불가";
     pwMsgArea.style.paddingRight = "93px";
     pwMsgArea.style.color = "#C19287";
     error[2].style.display = "block";
-    error[2].style.position = "fixed";
+    error[2].style.position = "absolute";
 
     pwMsg.style.display = "block";
-    pwImg1.src = "./img/style_sign_in_up_images/m_icon_not_use.png";
+    pwImg1.src = "./images/style_sign_in_up_images/m_icon_not_use.png";
   } else {
     error[2].style.display = "none";
     pwMsg.innerHTML = "안전";
     pwMsg.style.display = "block";
     pwMsg.style.color = "#03c75a";
-    pwImg1.src = "./img/style_sign_in_up_images/m_icon_safe.png";
+    pwImg1.src = "./images/style_sign_in_up_images/m_icon_safe.png";
   }
 }
 
 function comparePw() {
   if (pw2.value === pw1.value && pw2.value != "") {
-    pwImg2.src = "./img/style_sign_in_up_images/m_icon_check_enable.png";
+    pwImg2.src = "./images/style_sign_in_up_images/m_icon_check_enable.png";
     error[3].style.display = "none";
   } else if (pw2.value !== pw1.value) {
-    pwImg2.src = "./img/style_sign_in_up_images/m_icon_check_disable.png";
+    pwImg2.src = "./images/style_sign_in_up_images/m_icon_check_disable.png";
     error[3].innerHTML = "비밀번호가 일치하지 않습니다.";
     error[3].style.display = "block";
-    error[3].style.position = "fixed";
+    error[3].style.position = "absolute";
   }
 
   if (pw2.value === "") {
     error[3].innerHTML = "필수 정보입니다.";
     error[3].style.display = "block";
-    error[3].style.position = "fixed";
+    error[3].style.position = "absolute";
   }
 }
 
@@ -139,7 +139,7 @@ function checkName() {
   if (userName.value === "") {
     error[4].innerHTML = "필수 정보입니다.";
     error[4].style.display = "block";
-    error[4].style.position = "fixed";
+    error[4].style.position = "absolute";
   } else if (
     !namePattern.test(userName.value) ||
     userName.value.indexOf(" ") > -1
@@ -147,7 +147,7 @@ function checkName() {
     error[4].innerHTML =
       "한글과 영문 대 소문자를 사용하세요. (특수기호, 공백 사용 불가)";
     error[4].style.display = "block";
-    error[4].style.position = "fixed";
+    error[4].style.position = "absolute";
   } else {
     error[4].style.display = "none";
   }
@@ -159,7 +159,7 @@ function isBirthCompleted() {
   if (!yearPattern.test(yy.value)) {
     error[6].innerHTML = "태어난 년도 4자리를 정확하게 입력하세요.";
     error[6].style.display = "block";
-    error[6].style.position = "fixed";
+    error[6].style.position = "absolute";
   } else {
     isMonthSelected();
   }
@@ -200,15 +200,15 @@ function checkAge() {
   if (Number(yy.value) < 1920) {
     error[6].innerHTML = "생년월일을 다시 확인해주세요.";
     error[6].style.display = "block";
-    error[6].style.position = "fixed";
+    error[6].style.position = "absolute";
   } else if (Number(yy.value) > 2020) {
     error[6].innerHTML = "셍년월일을 다시 확인해주세요.";
     error[6].style.display = "block";
-    error[6].style.position = "fixed";
+    error[6].style.position = "absolute";
   } else if (Number(yy.value) > 2005) {
     error[6].innerHTML = "만 14세 미만의 어린이는 보호자 동의가 필요합니다.";
     error[6].style.display = "block";
-    error[6].style.position = "fixed";
+    error[6].style.position = "absolute";
   } else {
     age.innerHTML = (year - yy.value + 1);
     error[6].style.display = "none";
@@ -221,11 +221,11 @@ function checkPhoneNum() {
   if (mobile.value === "") {
     error[7].innerHTML = "필수 정보입니다.";
     error[7].style.display = "block";
-    error[7].style.position = "fixed";
+    error[7].style.position = "absolute";
   } else if (!isPhoneNum.test(mobile.value)) {
     error[7].innerHTML = "형식에 맞지 않는 번호입니다.";
     error[7].style.display = "block";
-    error[7].style.position = "fixed";
+    error[7].style.position = "absolute";
   } else {
     error[7].style.display = "none";
   }
@@ -235,7 +235,7 @@ function checkPrefer() {
   if (id.value === "") {
     error[8].innerHTML = "필수 정보입니다.";
     error[8].style.display = "block";
-    error[8].style.position = "fixed";
+    error[8].style.position = "absolute";
   }
 }
 
@@ -317,19 +317,22 @@ function serch_loaction() {
 }
 
 // 카테고리 토글
+const category_btn = document.getElementsByClassName("category_btn");
+
 function handleClick(event) {
-  user_category_value = event.target.value;
+  event.target.value;
   // 콘솔창을 보면 둘다 동일한 값이 나온다
-  console.log(user_category_value)
+  
   if (event.target.classList[1] === "clicked") {
     event.target.classList.remove("clicked");
   } else {
-    for (var i = 0; i < category_btn.length; i++) {
-      category_btn[i].classList.remove("clicked");
-    }
-
+    // for (var i = 0; i < category_btn.length; i++) {
+    //   category_btn[i].classList.remove("clicked");
+    // }
+    category_btn[0].classList.remove("clicked");
+    category_btn[1].classList.remove("clicked");
+    
     event.target.classList.add("clicked");
-
   }
 }
 
