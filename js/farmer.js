@@ -34,7 +34,7 @@ function get_farmer() {
     }
     $.ajax({
         type: "GET",
-        url: "http://rbgud.shop/article/farmer/",
+        url: "https://rbgud.shop/article/farmer/",
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Content-type", "application/json");
           xhr.setRequestHeader("Authorization", "Bearer " + token);
@@ -62,8 +62,8 @@ function get_farmer() {
                                 <p> ${fullname}님은 <strong>${rank} 중인 여름지기</strong> 입니다 🌱 <br /></p>
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
-                            <header style="width: 100%;">
-                                <span class="image fit"><img
+                            <header>
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src='./images/style_sign_in_up_images/form_profile_img.png';
                                         alt="profile_img" /></span>
                             </header>
@@ -79,8 +79,8 @@ function get_farmer() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                     style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -99,8 +99,8 @@ function get_farmer() {
                                 <p> ${fullname}님은 <strong>${rank} 중인 여름지기</strong> 입니다 🌱 <br /></p>
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
-                            <header style="width: 100%;">
-                                <span class="image fit"><img
+                            <header>
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src="${prof_img}"
                                         alt="profile_img" /></span>
                             </header>
@@ -116,8 +116,8 @@ function get_farmer() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -128,6 +128,13 @@ function get_farmer() {
                     `;
                     $('#top').append(temp_container);
                 }
+                let temp_put_info = `
+                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+                style="width: 30%; float: right;">
+               저장
+               </a>
+                `;
+                $('#button_box').append(temp_put_info);
 
                 /* 다녀온 공고 */
                 for (let i = 0; i < response.length; i++){
@@ -154,12 +161,44 @@ function get_farmer() {
                                         비용 : ${cost} <br />
                                         위치 : ${location} <br />
                                         참여 기간 : ${period}일간<br />
-                                    <a onclick="post_review(${article_id})" title="Button push blue/green" href="#contact"
+                                    <a onclick="document.getElementById('article_review_post${article_id}').classList.remove('hide');" title="Button push blue/green" href="#contact"
                                     class="button btnPush btnBlueGreen">후기 작성</a>
                                 </article>
                             </div>
                             `;
                             $('#articlearticle').append(temp_article_review);
+                            let temp_post_button = `                                   
+                            <div id="article_review_post${article_id}" class="hide">
+                                <div class="col-12">
+                                <textarea name="content" id="review_content" placeholder="후기 내용"
+                                    style="width:80%;height:100%;"></textarea>
+                                </div>
+                                <div class="col-12" style="margin-bottom: 25px;">
+                                    <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
+                                    <div>
+                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div>
+                                        <select class="form-select" id="post-select" aria-label="rate"
+                                            style="margin-bottom: 25px;">
+                                            <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
+                                            <option value="1">⭐️</option>
+                                            <option value="2">⭐️⭐️</option>
+                                            <option value="3">⭐️⭐️⭐️</option>
+                                            <option value="4">⭐️⭐️⭐️⭐️</option>
+                                            <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12" id="post_review_button">
+                                    <a onclick="post_review(${article_id})" title="Button push blue/green"
+                                    class="button btnPush btnBlueGreen">후기 작성</a>
+                                </div>
+                            </div>
+                            `;
+                            $('#review_post_box').append(temp_post_button);
                         }else{
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
@@ -194,12 +233,45 @@ function get_farmer() {
                                         비용 : ${cost} <br />
                                         위치 : ${location} <br />
                                         참여 기간 : ${period}일간<br />
-                                    <a onclick="post_review(${article_id})" title="Button push blue/green" href="#contact"
+                                    <a title="Button push blue/green" href="#contact"
                                     class="button btnPush btnBlueGreen">후기 작성</a>
                                 </article>
                             </div>
                             `;
                             $('#articlearticle').append(temp_article_review);
+                            $('#articlearticle').append(temp_article_review);
+                            let temp_post_button = `                                   
+                            <div id="article_review_post${article_id}" class="hide">
+                                <div class="col-12">
+                                <textarea name="content" id="review_content" placeholder="후기 내용"
+                                    style="width:80%;height:100%;"></textarea>
+                                </div>
+                                <div class="col-12">
+                                    <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
+                                    <div>
+                                        <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div>
+                                        <select class="form-select" id="post-select" aria-label="rate"
+                                            style="margin-bottom: 25px;">
+                                            <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
+                                            <option value="1">⭐️</option>
+                                            <option value="2">⭐️⭐️</option>
+                                            <option value="3">⭐️⭐️⭐️</option>
+                                            <option value="4">⭐️⭐️⭐️⭐️</option>
+                                            <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-12" id="post_review_button">
+                                    <a onclick="document.getElementById('article_review_post${article_id}').classList.remove('hide');" title="Button push blue/green"
+                                    class="button btnPush btnBlueGreen">후기 작성</a>
+                                </div>
+                            </div>
+                            `;
+                            $('#review_post_box').append(temp_post_button);
                         }else{
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
@@ -250,8 +322,8 @@ function get_farmer() {
                                 <p> ${fullname}님은 <strong>${rank} 중인 여름지기</strong> 입니다 🌱 <br /></p>
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
-                            <header style="width: 100%;">
-                                <span class="image fit"><img
+                            <header>
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src='./images/style_sign_in_up_images/form_profile_img.png';
                                         alt="profile_img" /></span>
                             </header>
@@ -267,8 +339,8 @@ function get_farmer() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -287,8 +359,8 @@ function get_farmer() {
                                 <p> ${fullname}님은 <strong>${rank} 중인 여름지기</strong> 입니다 🌱 <br /></p>
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
-                            <header style="width: 100%;">
-                                <span class="image fit"><img
+                            <header>
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src="${prof_img}";
                                         alt="profile_img" /></span>
                             </header>
@@ -304,8 +376,8 @@ function get_farmer() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -321,6 +393,13 @@ function get_farmer() {
                 <p>아직 다녀온 농장이 없어요 🧚</p>
                 `;
                 $('#plus_name').append(temp_article_review);
+                let temp_put_info = `
+                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+                style="width: 30%; float: right;">
+               저장
+               </a>
+                `;
+                $('#button_box').append(temp_put_info);
             }
         }
     })
@@ -333,7 +412,7 @@ function get_review() {
     }
     $.ajax({
         type: "GET",
-        url: "http://rbgud.shop/article/review/",
+        url: "https://rbgud.shop/article/review/",
 
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Content-type", "application/json");
@@ -519,7 +598,7 @@ function post_review(article_id) {
     formData.append("rate", rate);
     $.ajax({
         type: "POST",
-        url: "http://rbgud.shop/article/" + article_id + "/farmer",
+        url: "https://rbgud.shop/article/" + article_id + "/farmer",
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
@@ -561,7 +640,7 @@ function put_review(review_id) {
     formData.append("rate", rate);
     $.ajax({
         type: "PUT",
-        url: "http://rbgud.shop/article/farmer/" + review_id,
+        url: "https://rbgud.shop/article/farmer/" + review_id,
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
@@ -587,7 +666,7 @@ function delete_review(review_id) {
     var token = localStorage.getItem("access")
     $.ajax({
     type: "DELETE",
-    url: "http://rbgud.shop/article/farmer/"+review_id,
+    url: "https://rbgud.shop/article/farmer/"+review_id,
     beforeSend: function (xhr) {
       xhr.setRequestHeader("Content-type", "application/json");
       xhr.setRequestHeader("Authorization", "Bearer " + token);
@@ -605,3 +684,50 @@ function delete_review(review_id) {
     })
 }
 
+// 사용자 정보 수정하기
+async function handle_signput() {
+    var token = localStorage.getItem("access")
+    if (localStorage.getItem("payload") != null) {
+        const payload = JSON.parse(localStorage.getItem("payload"));
+        user_id = payload.user_id;
+    }
+
+    const input_img = document.getElementById("input_img").files[0]
+    const location = document.getElementById("locations").value
+    const introduction = document.getElementById("introduction").value
+    const prefer = document.getElementById("prefer").value
+
+    const signputData = new FormData();
+
+    signputData.append('img', input_img);
+    signputData.append("location", XSSCheck(location, 1));
+    signputData.append("introduction", XSSCheck(introduction, 1));
+    signputData.append("prefer", XSSCheck(prefer, 1));
+    
+    $.ajax({
+        type: "PUT",
+        url: "https://rbgud.shop/article/farmer/" + user_id +"/",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", "Bearer " + token);
+        },
+        data: signputData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function () {
+            const payload = JSON.parse(localStorage.getItem("payload"));
+            alert("수정사항이 정상적으로 저장되었습니다.")
+            if (payload != null) {
+                const user_category = payload.category;
+                if (user_category == 1) {
+                    window.location.replace(`http://127.0.0.1:5000/farm.html`);
+                } else {
+                    window.location.replace(`http://127.0.0.1:5000/farmer.html`);
+                }
+            }
+        },
+        error:function(){
+            alert("수정 실패")
+        }
+    })
+}

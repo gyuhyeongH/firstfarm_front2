@@ -1,6 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,700,900");
-@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic&display=swap');
 
 /*
 	Phantom by HTML5 UP
@@ -118,7 +118,7 @@ input, select, textarea {
 
 	body, input, select, textarea {
 		color: #585858;
-		font-family: "Source Sans Pro", Helvetica, sans-serif;
+		font-family: 'Do Hyeon', 'Nanum Gothic', sans-serif;
 		font-size: 16pt;
 		font-weight: 300;
 		/* line-height: 1.75; */
@@ -199,7 +199,7 @@ input, select, textarea {
 	h2, h3, h4, h5, h6 {
 		font-weight: 900;
 		line-height: 1.5;
-		margin: 0 0 1em 0;
+		margin: 0 0 2em 0;
 		text-transform: uppercase;
 		letter-spacing: 0.35em;
 	}
@@ -3161,11 +3161,43 @@ input, select, textarea {
 		padding: 0em 0 6em 0 ;
 	}
 
+		@media screen and (max-width: 1680px) {
+
+			#main {
+				padding: 0em 0 1em 0 ;
+				height: 130vh;
+			}
+
+		}
+		@media screen and (max-width: 1280px) {
+
+			#main {
+				padding: 0em 0 1em 0 ;
+				height: 130vh;
+			}
+
+		}
+		@media screen and (max-width: 980px) {
+
+			#main {
+				padding: 0em 0 1em 0 ;
+				height: 80vh;
+			}
+
+		}
 		@media screen and (max-width: 736px) {
 
 			#main {
 				padding: 0em 0 1em 0 ;
-				height: 60vh;
+				height: 100vh;
+			}
+
+		}
+		@media screen and (max-width: 480px) {
+
+			#main {
+				padding: 0em 0 1em 0 ;
+				height: 80vh;
 			}
 
 		}
