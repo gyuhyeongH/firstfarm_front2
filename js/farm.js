@@ -1,13 +1,13 @@
 function XSSCheck(str, level) {
     if (level == undefined || level == 0) {
-      str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
     } else if (level != undefined && level == 1) {
-      str = str.replace(/\</g, "&lt;");
-      str = str.replace(/\>/g, "&gt;");
+        str = str.replace(/\</g, "&lt;");
+        str = str.replace(/\>/g, "&gt;");
     }
     return str;
-  }
-  
+}
+
 $(document).ready(function () {
     get_farm();
 })
@@ -22,12 +22,12 @@ function get_farm() {
         type: "GET",
         url: "https://rbgud.shop/article/farm/",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Content-type", "application/json");
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: {},
         success: function (response) {
-            if(response.length>0){
+            if (response.length > 0) {
                 let rank = response[0]['userinfo']['rank']
                 let birthday = response[0]['userinfo']['birthday']
                 let email = response[0]['userinfo']['email']
@@ -38,8 +38,8 @@ function get_farm() {
                 let introduction = response[0]['userinfo']['introduction']
                 let phone_number = response[0]['userinfo']['phone_number']
                 let points = response[0]['userinfo']['points']
-                let prof_img= response[0]['userinfo']['profile_img']
-                if(prof_img == undefined || null){
+                let prof_img = response[0]['userinfo']['profile_img']
+                if (prof_img == undefined || null) {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -76,7 +76,7 @@ function get_farm() {
                     `;
                     $('#top').append(temp_container);
                 }
-                else{
+                else {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -121,7 +121,7 @@ function get_farm() {
                 `;
                 $('#button_box').append(temp_put_info);
 
-                for (let i = 0; i < response.length; i++){
+                for (let i = 0; i < response.length; i++) {
                     let article_id = response[i]['id']
                     let farmname = response[i]['farm_name']
                     let location = response[i]['location']
@@ -132,7 +132,7 @@ function get_farm() {
                     let exposure_end_date = response[i]['exposure_end_date'].split('T')[0]
                     let created_at = response[i]['created_at'].split('T')[0]
                     let img1 = response[i]['img1']
-                    if(img1 == undefined || img1 == null){
+                    if (img1 == undefined || img1 == null) {
                         let temp_article_info = `
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
@@ -152,8 +152,8 @@ function get_farm() {
                             </article>
                         </div>
                         `;
-                        $('#articlearticle').append(temp_article_info);                       
-                    }else{
+                        $('#articlearticle').append(temp_article_info);
+                    } else {
                         let temp_article_info = `
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
@@ -172,14 +172,14 @@ function get_farm() {
                             </article>
                         </div>
                         `;
-                        $('#articlearticle').append(temp_article_info);                       
+                        $('#articlearticle').append(temp_article_info);
                     }
                 }
                 let temp_plus_name = `
                 <h1>게시한 공고</h1>
                 <p>여름지기님들과 함께한 시간들을 확인해 보세요 :)</p>`;
                 $('#plus_name').append(temp_plus_name)
-            }else{
+            } else {
                 console.log(response)
                 let rank = response.rank
                 let birthday = response.birthday
@@ -192,8 +192,8 @@ function get_farm() {
                 let phone_number = response.phone_number
                 let points = response.points
                 let prof_img = response.profile_img
-    
-                if(prof_img == undefined || null){
+
+                if (prof_img == undefined || null) {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -230,7 +230,7 @@ function get_farm() {
                     </div>
                     `;
                     $('#top').append(temp_container);
-                }else{
+                } else {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -281,8 +281,8 @@ function get_farm() {
                </a>
                 `;
                 $('#button_box').append(temp_put_info);
-        }
-            
+            }
+
         }
     })
 }
@@ -298,8 +298,8 @@ function get_apply(article_id) {
         type: "GET",
         url: "https://rbgud.shop/article/farm/" + article_id,
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Content-type", "application/json");
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: {},
         success: function (response) {
@@ -315,14 +315,14 @@ function get_apply(article_id) {
                 let phone_number = response[i]['userinfo']['phone_number']
                 let accept = response[i]['accept']
 
-                if (accept == true){
+                if (accept == true) {
                     let temp_apply_user_info = `
                     <p>${rank} | ${fullname} | ${gender} | ${age} | ${location} | ${phone_number} | ${email}</p>
                     <a onclick="put_apply(${article_id},${apply_id},${accept})" title="Button push blue/green"
                         class="button btnPush btnBlueGreen">수락 취소</a>
                 `;
                     $('#apply_user_info').append(temp_apply_user_info);
-                }else{
+                } else {
                     let temp_apply_user_info = `
                     <p>${rank} | ${fullname} | ${gender} | ${age} | ${location} | ${phone_number} | ${email}</p>
                     <a onclick="put_apply(${article_id},${apply_id},${accept})" title="Button push blue/green"
@@ -335,20 +335,20 @@ function get_apply(article_id) {
     })
 }
 
-function put_apply(article_id,apply_id,accept) {
-    if(accept==true){
+function put_apply(article_id, apply_id, accept) {
+    if (accept == true) {
         accept = false
-    }else{
+    } else {
         accept = true
     }
     $.ajax({
         type: "PUT",
         url: "https://rbgud.shop/article/farm/" + article_id + "/" + apply_id,
-        data: {'accept':accept},
+        data: { 'accept': accept },
         success: function (response) {
             alert('신청 변경 완료');
             window.location.reload();
-            
+
         }
     })
 }
@@ -372,12 +372,12 @@ async function handle_signput() {
     signputData.append("location", XSSCheck(location, 1));
     signputData.append("introduction", XSSCheck(introduction, 1));
     signputData.append("prefer", XSSCheck(prefer, 1));
-    
+
     $.ajax({
         type: "PUT",
-        url: "https://rbgud.shop/article/farmer/" + user_id +"/",
+        url: "https://rbgud.shop/article/farmer/" + user_id + "/",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: signputData,
         cache: false,
@@ -389,13 +389,13 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-                    window.location.replace(`http://127.0.0.1:5000/farm.html`);
+                    window.location.replace(`http://hwisu.shop/farm.html`);
                 } else {
-                    window.location.replace(`http://127.0.0.1:5000/farmer.html`);
+                    window.location.replace(`http://hwisu.shop/farmer.html`);
                 }
             }
         },
-        error:function(){
+        error: function () {
             alert("수정 실패")
         }
     })

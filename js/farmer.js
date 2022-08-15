@@ -1,28 +1,28 @@
 function XSSCheck(str, level) {
     if (level == undefined || level == 0) {
-      str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+        str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
     } else if (level != undefined && level == 1) {
-      str = str.replace(/\</g, "&lt;");
-      str = str.replace(/\>/g, "&gt;");
+        str = str.replace(/\</g, "&lt;");
+        str = str.replace(/\>/g, "&gt;");
     }
     return str;
-  }
+}
 $(document).ready(function () {
-    get_farmer();   
+    get_farmer();
     get_review();
 })
-function get_star(rate){
-    if(rate == 1){
+function get_star(rate) {
+    if (rate == 1) {
         return "⭐️";
-    }else if(rate ==2){
+    } else if (rate == 2) {
         return "⭐️⭐️";
-    }else if(rate ==3){
+    } else if (rate == 3) {
         return "⭐️⭐️⭐️";
-    }else if(rate ==4){
+    } else if (rate == 4) {
         return "⭐️⭐️⭐️⭐️";
-    }else if(rate ==5){
+    } else if (rate == 5) {
         return "⭐️⭐️⭐️⭐️⭐️";
-    }else{
+    } else {
         return 0;
     }
 }
@@ -36,12 +36,12 @@ function get_farmer() {
         type: "GET",
         url: "https://rbgud.shop/article/farmer/",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Content-type", "application/json");
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: {},
-        success: function(response){
-            if(response.length>0){ 
+        success: function (response) {
+            if (response.length > 0) {
                 let rank = response[0]['userinfo']['rank']
                 let birthday = response[0]['userinfo']['birthday']
                 let email = response[0]['userinfo']['email']
@@ -53,7 +53,7 @@ function get_farmer() {
                 let phone_number = response[0]['userinfo']['phone_number']
                 let points = response[0]['userinfo']['points']
                 let prof_img = response[0]['userinfo']['profile_img']
-                if(prof_img == undefined || null){
+                if (prof_img == undefined || null) {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -90,7 +90,7 @@ function get_farmer() {
                     </div>
                     `;
                     $('#top').append(temp_container);
-                }else{
+                } else {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -137,7 +137,7 @@ function get_farmer() {
                 $('#button_box').append(temp_put_info);
 
                 /* 다녀온 공고 */
-                for (let i = 0; i < response.length; i++){
+                for (let i = 0; i < response.length; i++) {
                     let article_id = response[i]['articleinfo']['article_id']
                     let farmname = response[i]['articleinfo']['farm_name']
                     let location = response[i]['articleinfo']['location']
@@ -147,8 +147,8 @@ function get_farmer() {
                     let period = response[i]['articleinfo']['period']
                     let img1 = response[i]['articleinfo']['img1']
                     let review_dup = response[i]['reviewinfo']
-                    if(img1 == undefined || img1 == null){
-                        if(review_dup == true){
+                    if (img1 == undefined || img1 == null) {
+                        if (review_dup == true) {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
                                 <article class="box style2">
@@ -199,7 +199,7 @@ function get_farmer() {
                             </div>
                             `;
                             $('#review_post_box').append(temp_post_button);
-                        }else{
+                        } else {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
                                 <article class="box style2">
@@ -219,8 +219,8 @@ function get_farmer() {
                             `;
                             $('#articlearticle').append(temp_article_review);
                         }
-                    }else{
-                        if(review_dup == true){
+                    } else {
+                        if (review_dup == true) {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
                                 <article class="box style2">
@@ -272,7 +272,7 @@ function get_farmer() {
                             </div>
                             `;
                             $('#review_post_box').append(temp_post_button);
-                        }else{
+                        } else {
                             let temp_article_review = `
                             <div class="col-4 col-6-medium col-12-small">
                                 <article class="box style2">
@@ -300,7 +300,7 @@ function get_farmer() {
                 `;
                 $('#plus_name').append(temp_article_review);
 
-            }else{
+            } else {
                 let rank = response.rank
                 let birthday = response.birthday
                 let email = response.email
@@ -312,8 +312,8 @@ function get_farmer() {
                 let phone_number = response.phone_number
                 let points = response.points
                 let prof_img = response.profile_img
-    
-                if(prof_img == undefined || null){
+
+                if (prof_img == undefined || null) {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -350,7 +350,7 @@ function get_farmer() {
                     </div>
                     `;
                     $('#top').append(temp_container);
-                }else{
+                } else {
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -387,7 +387,7 @@ function get_farmer() {
                     </div>
                     `;
                     $('#top').append(temp_container);
-                }          
+                }
                 let temp_article_review = `
                 <h1>다녀온 농장</h1>
                 <p>아직 다녀온 농장이 없어요 🧚</p>
@@ -415,8 +415,8 @@ function get_review() {
         url: "https://rbgud.shop/article/review/",
 
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Content-type", "application/json");
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: {},
         success: function (response) {
@@ -433,7 +433,7 @@ function get_review() {
                 let updated_at = response[i]['updated_at'].split('T')[0]
                 let star = get_star(rate)
 
-                if(img1 == undefined || img1 == null || img2 == undefined || img2 == null || img3 == undefined || img3 == null){
+                if (img1 == undefined || img1 == null || img2 == undefined || img2 == null || img3 == undefined || img3 == null) {
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
@@ -454,7 +454,7 @@ function get_review() {
                     </div>
                     `;
                     $('#reviewreview').append(temp_review);
-                    let temp_put =`
+                    let temp_put = `
                     <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
                     aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
@@ -499,8 +499,8 @@ function get_review() {
                     </div>
                     `;
                     $('#review_put_box').append(temp_put);
-                    }else{
-                        let temp_review = `
+                } else {
+                    let temp_review = `
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
                                 <div class="image featured">
@@ -521,8 +521,8 @@ function get_review() {
                             </article>
                         </div>
                         `;
-                        $('#reviewreview').append(temp_review);
-                        let temp_put =`
+                    $('#reviewreview').append(temp_review);
+                    let temp_put = `
                         <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
@@ -566,8 +566,8 @@ function get_review() {
                             </div>
                         </div>
                         `;
-                        $('#review_put_box').append(temp_put);
-        
+                    $('#review_put_box').append(temp_put);
+
                 }
 
             }
@@ -585,7 +585,7 @@ function post_review(article_id) {
     var token = localStorage.getItem("access")
     let content = $('#review_content').val()
     let img = $('#formFileMultiple')[0];
-    if(img.files.length > 3) {
+    if (img.files.length > 3) {
         alert("사진 업로드는 최대 3개까지 가능합니다");
         return;
     }
@@ -600,7 +600,7 @@ function post_review(article_id) {
         type: "POST",
         url: "https://rbgud.shop/article/" + article_id + "/farmer",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: formData,
         cache: false,
@@ -609,11 +609,11 @@ function post_review(article_id) {
         success: function (response) {
             if (response["message"] == '리뷰 작성 완료!') {
                 window.location.reload();
-            }else{
+            } else {
                 window.location.reload();
             }
         },
-        error: function(){
+        error: function () {
             alert("댓글과 평가점수는 필수입니다.")
         }
     })
@@ -642,7 +642,7 @@ function put_review(review_id) {
         type: "PUT",
         url: "https://rbgud.shop/article/farmer/" + review_id,
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: formData,
         cache: false,
@@ -653,9 +653,9 @@ function put_review(review_id) {
         },
         error: function (response) {
             console.log(response)
-            if(response["message"] == '리뷰 수정 실패!' ){
+            if (response["message"] == '리뷰 수정 실패!') {
                 alert("리뷰 수정에 실패했습니다");
-            }else{
+            } else {
                 alert("작성자만 리뷰 수정이 가능합니다");
             }
         }
@@ -665,21 +665,21 @@ function put_review(review_id) {
 function delete_review(review_id) {
     var token = localStorage.getItem("access")
     $.ajax({
-    type: "DELETE",
-    url: "https://rbgud.shop/article/farmer/"+review_id,
-    beforeSend: function (xhr) {
-      xhr.setRequestHeader("Content-type", "application/json");
-      xhr.setRequestHeader("Authorization", "Bearer " + token);
-    },
-    data: {},
-    success: function(response){
-        alert(response["message"])
-          if (response["message"] == '리뷰 삭제 완료.') {
-              window.location.reload();
-          } else {
-              window.location.reload();
-          }
-    }
+        type: "DELETE",
+        url: "https://rbgud.shop/article/farmer/" + review_id,
+        beforeSend: function (xhr) {
+            xhr.setRequestHeader("Content-type", "application/json");
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
+        },
+        data: {},
+        success: function (response) {
+            alert(response["message"])
+            if (response["message"] == '리뷰 삭제 완료.') {
+                window.location.reload();
+            } else {
+                window.location.reload();
+            }
+        }
 
     })
 }
@@ -703,12 +703,12 @@ async function handle_signput() {
     signputData.append("location", XSSCheck(location, 1));
     signputData.append("introduction", XSSCheck(introduction, 1));
     signputData.append("prefer", XSSCheck(prefer, 1));
-    
+
     $.ajax({
         type: "PUT",
-        url: "https://rbgud.shop/article/farmer/" + user_id +"/",
+        url: "https://rbgud.shop/article/farmer/" + user_id + "/",
         beforeSend: function (xhr) {
-          xhr.setRequestHeader("Authorization", "Bearer " + token);
+            xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
         data: signputData,
         cache: false,
@@ -720,13 +720,13 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-                    window.location.replace(`http://127.0.0.1:5000/farm.html`);
+                    window.location.replace(`https://rbgud.shop/farm.html`);
                 } else {
-                    window.location.replace(`http://127.0.0.1:5000/farmer.html`);
+                    window.location.replace(`https://rbgud.shop/farmer.html`);
                 }
             }
         },
-        error:function(){
+        error: function () {
             alert("수정 실패")
         }
     })
