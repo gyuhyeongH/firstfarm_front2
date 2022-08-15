@@ -7,22 +7,25 @@
 <html>
 
 <head>
+	<link rel="icon"
+		href="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoXjDW%2FbtrJsOP2ssA%2FMJUI7b9S1tiVlDvVD2dAH0%2Fimg.png" />
 	<title>첫농 | 농장 검색</title>
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-	<link rel="stylesheet" href="assets/css/main_article.css" />
-	<noscript>
-		<link rel="stylesheet" href="assets/css/noscript.css" />
-	</noscript>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
 		</script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.js"></script>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-		integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+	
+	<link rel="stylesheet" href="./css/search_article.css" />
+	<link rel="stylesheet" href="./assets/css/main_article.css" />
+	<noscript>
+		<link rel="stylesheet" href="assets/css/noscript.css" />
+	</noscript>
 
-	<link rel="stylesheet" href="/css/search_article.css" />
 </head>
 
 <body class="is-preload">
@@ -79,7 +82,7 @@
 		</nav>
 
 		<!-- Main -->
-		<div id="main">
+		<div id="main" style="font-family: 'Nanum Gothic', sans-serif;">
 			<div class="inner">
 				<header>
 					<nav style="height:45px;">
@@ -87,22 +90,22 @@
 						<ul class=" nav nav-tabs" id="myTab" role="tablist">
 							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
 								<button
-									style="height:45px;width:80px;font-size: 14px;margin-left:-11px; margin-top:-1px; border-radius:0; border-bottom:white;text-align:center"
+									style="height:45px ;width:80px; font-size: 14px; margin-left: -10px; border-radius:0; border-bottom:white;text-align:center; padding:0;"
 									class="nav-link onclick" data-bs-toggle="tab" type="button" name="">전체</button>
 							</li>
 							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
 								<button
-									style="height:45px;width:80px;font-size: 14px;margin-left:-12px; margin-top:-1px;text-overflow: inherit; border-radius:0"
+									style="height:45px; width:80px; font-size: 14px; margin-left: -14px; border-radius:0; border-bottom:white;text-align:center; padding:0;"
 									class="nav-link onclick" data-bs-toggle="tab" type="button" value="1">일자리</button>
 							</li>
 							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
 								<button
-									style="height:45px;width:80px;font-size: 14px;margin-left:-13px; margin-top:-1px; border-radius:0"
+									style="height:45px; width:80px; font-size: 14px; margin-left: -18px; border-radius:0; border-bottom:white;text-align:center; padding:0;"
 									class="nav-link onclick" data-bs-toggle="tab" type="button" value="2">체험</button>
 							</li>
 							<li class="nav-item" style="height:45px;width:80px;" role="presentation">
 								<button
-									style="height:45px;width:80px;font-size: 14px;margin-left:-13px; margin-top:-1px; border-radius:0"
+									style="height:45px; width:80px; font-size: 14px; margin-left: -20px; border-radius:0; border-bottom:white;text-align:center; padding:0;"
 									class="nav-link onclick" data-bs-toggle="tab" type="button" value="3">추천</button>
 							</li>
 						</ul>
@@ -111,7 +114,7 @@
 
 						<p class="botton_row" style="margin-top: 13px;">
 							<button class="onclick"
-								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px"
+								style="height:45px;width:80px;font-size: 14px; margin-left:5px;margin-bottom:5px; margin-top:5px;"
 								type="button" name='서울'>
 								전체
 							</button>
@@ -222,7 +225,8 @@
 		<footer id="footer">
 			<div class="inner">
 				<ul class="copyright">
-					<li>&copy; ICDW</li>
+					<li>Copyright &copy;2022 TEAMSPARTA Camp 2th.</li>
+					<li>Team : <a href="https://github.com/gyuhyeongH/drf_firstfarm_backend">WCDW</a></li>
 					<li>황규형 김휘수 이동현 임주영</li>
 				</ul>
 			</div>
