@@ -40,13 +40,31 @@
 
     <!-- Nav Menu -->
     <nav id="menu">
-        <h2>Menu</h2>
+        <h2 class="menu_menu">M E N U</h2>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html">Ipsum veroeros</a></li>
-            <li><a href="generic.html">Tempus etiam</a></li>
-            <li><a href="generic.html">Consequat dolor</a></li>
-            <li><a href="elements.html">Elements</a></li>
+            <li class="btn_hover"><a href="index.html">소개</a></li>
+            <li class="btn_hover"><a href="search_article.html">알바 / 체험 찾기</a></li>
+            <li class="btn_hover"><a href="articleupload.html" id="a_article">공고 등록</a></li>
+            <li class="btn_hover">
+                <a id="a_mypage" class="link" onclick="handle_enter_mypage()">
+                    마이페이지
+                </a>
+            </li>
+            <li class="btn_hover">
+                <a id="a_logout" class="nav-logout" onclick="handle_logout()">
+                    로그아웃
+                </a>
+            </li>
+            <li class="btn_hover">
+                <a id="a_login" class="nav-signin" href="signin.html">
+                    로그인
+                </a>
+            </li>
+            <li class="btn_hover">
+                <a id="a_signup" class="nav-signup" href="signup.html">
+                    회원가입
+                </a>
+            </li>
         </ul>
     </nav>
 
@@ -57,7 +75,7 @@
             <span class="symbol"><img class="symbol_img"
                     src="https://img1.daumcdn.net/thumb/R1280x0/?scode=mtistory2&fname=https%3A%2F%2Fblog.kakaocdn.net%2Fdn%2FoXjDW%2FbtrJsOP2ssA%2FMJUI7b9S1tiVlDvVD2dAH0%2Fimg.png"
                     alt="" /></span>
-            <span class="logo_title">첫농</span>
+            <span class="logo_title">F I R S T F A R M</span>
         </a>
 
         <!--제목-->
@@ -134,6 +152,7 @@
 </body>
 
 <!-- Scripts -->
+<script src="js/nav.js"></script>
 <script src="js/articledetail.js"></script>
 
 <script src="assets/js/browser.min.js"></script>
