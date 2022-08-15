@@ -1,3 +1,13 @@
+function XSSCheck(str, level) {
+    if (level == undefined || level == 0) {
+      str = str.replace(/\<|\>|\"|\'|\%|\;|\(|\)|\&|\+|\-/g, "");
+    } else if (level != undefined && level == 1) {
+      str = str.replace(/\</g, "&lt;");
+      str = str.replace(/\>/g, "&gt;");
+    }
+    return str;
+  }
+  
 $(document).ready(function () {
     get_farm();
 })
@@ -39,7 +49,7 @@ function get_farm() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image centered" style="border-radius: 80%;" >
+                                <span class="image fit" style="width:50%;margin:0 auto;" >
                                 <img src="./images/style_sign_in_up_images/form_profile_img.png"
                                         alt="profile_img"/></span>
                             </header>
@@ -55,8 +65,7 @@ function get_farm() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info" style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -77,9 +86,8 @@ function get_farm() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                            <span class="image centered" style="border-radius: 80%;" ><img
-                                        src="${prof_img}"
-                                        alt="profile_img" /></span>
+                            <span class="image fit" style="width:50%;margin:0 auto;">
+                                <img src="${prof_img}" alt="profile_img" /></span>
                             </header>
                             <header id="desc" style="width: 100%;">
                                 <p> ✔️ 이름 : ${fullname} <br />
@@ -93,8 +101,8 @@ function get_farm() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -105,6 +113,14 @@ function get_farm() {
                     `;
                     $('#top').append(temp_container);
                 }
+                let temp_put_info = `
+                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+                style="width: 30%; float: right;">
+               저장
+               </a>
+                `;
+                $('#button_box').append(temp_put_info);
+
                 for (let i = 0; i < response.length; i++){
                     let article_id = response[i]['id']
                     let farmname = response[i]['farm_name']
@@ -187,7 +203,7 @@ function get_farm() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image centered"><img
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src="./images/style_sign_in_up_images/form_profile_img.png"
                                         alt="profile_img" /></span>
                             </header>
@@ -203,8 +219,8 @@ function get_farm() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -224,7 +240,7 @@ function get_farm() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image fit"><img
+                                <span class="image fit" style="width:50%;margin:0 auto;"><img
                                         src="${prof_img}"
                                         alt="profile_img" /></span>
                             </header>
@@ -240,8 +256,8 @@ function get_farm() {
                                 </p>
                             </header>
                             <header id="profile_button_box">
-                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="signput.html"
-                                    target="blank" style="width: 40%; margin-right: 10px;">
+                                <a title="Button push blue/green" class="button btnPush btnBlueGreen" href="#put_info"
+                                 style="width: 40%; margin-right: 10px;">
                                     정보 수정
                                 </a>
                                 <a href="#work" title="Button push blue/green" class="button btnPush btnBlueGreen"
@@ -256,7 +272,15 @@ function get_farm() {
                 let temp_plus_name = `
                 <h1>게시한 공고</h1>
                 <p>아직 게시한 공고가 없어요</p>`;
-                $('#plus_name').append(temp_plus_name)
+                $('#plus_name').append(temp_plus_name);
+
+                let temp_put_info = `
+                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+                style="width: 30%; float: right;">
+               저장
+               </a>
+                `;
+                $('#button_box').append(temp_put_info);
         }
             
         }
@@ -325,6 +349,54 @@ function put_apply(article_id,apply_id,accept) {
             alert('신청 변경 완료');
             window.location.reload();
             
+        }
+    })
+}
+
+// 사용자 정보 수정하기
+async function handle_signput() {
+    var token = localStorage.getItem("access")
+    if (localStorage.getItem("payload") != null) {
+        const payload = JSON.parse(localStorage.getItem("payload"));
+        user_id = payload.user_id;
+    }
+
+    const input_img = document.getElementById("input_img").files[0]
+    const location = document.getElementById("locations").value
+    const introduction = document.getElementById("introduction").value
+    const prefer = document.getElementById("prefer").value
+
+    const signputData = new FormData();
+
+    signputData.append('img', input_img);
+    signputData.append("location", XSSCheck(location, 1));
+    signputData.append("introduction", XSSCheck(introduction, 1));
+    signputData.append("prefer", XSSCheck(prefer, 1));
+    
+    $.ajax({
+        type: "PUT",
+        url: "https://rbgud.shop/article/farmer/" + user_id +"/",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader("Authorization", "Bearer " + token);
+        },
+        data: signputData,
+        cache: false,
+        contentType: false,
+        processData: false,
+        success: function () {
+            const payload = JSON.parse(localStorage.getItem("payload"));
+            alert("수정사항이 정상적으로 저장되었습니다.")
+            if (payload != null) {
+                const user_category = payload.category;
+                if (user_category == 1) {
+                    window.location.replace(`http://127.0.0.1:5000/farm.html`);
+                } else {
+                    window.location.replace(`http://127.0.0.1:5000/farmer.html`);
+                }
+            }
+        },
+        error:function(){
+            alert("수정 실패")
         }
     })
 }
