@@ -70,7 +70,7 @@ function get_farmer() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image fit" style="width:50%;margin:0 auto;"><img
+                                <span class="image fit" style="width:20%;margin:0 auto;"><img
                                         src='./images/style_sign_in_up_images/form_profile_img.png';
                                         alt="profile_img" /></span>
                             </header>
@@ -107,7 +107,7 @@ function get_farmer() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image fit" style="width:50%;margin:0 auto;"><img
+                                <span class="image fit" style="width:20%;margin:0 auto;"><img
                                         src="${prof_img}"
                                         alt="profile_img" /></span>
                             </header>
@@ -294,7 +294,7 @@ function get_farmer() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image fit" style="width:50%;margin:0 auto;"><img
+                                <span class="image fit" style="width:20%;margin:0 auto;"><img
                                         src='./images/style_sign_in_up_images/form_profile_img.png';
                                         alt="profile_img" /></span>
                             </header>
@@ -331,7 +331,7 @@ function get_farmer() {
                                 <p>다음 랭크까지 <strong>${points}%</strong> 모았어요 ! <br /></p>
                             </header>
                             <header>
-                                <span class="image fit" style="width:50%;margin:0 auto;"><img
+                                <span class="image fit" style="width:20%;margin:0 auto;"><img
                                         src="${prof_img}";
                                         alt="profile_img" /></span>
                             </header>
