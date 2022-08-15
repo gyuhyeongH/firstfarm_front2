@@ -2827,7 +2827,7 @@ button:disabled,
 }
 
 .tiles article.style1>.image:before {
-	background-color: #C7D36F;
+	background-color: black;
 	opacity: 0.2;
 }
 
