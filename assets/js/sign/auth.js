@@ -1,7 +1,6 @@
-// const backend_base_url = "https://rbgud.shop";
-// const frontend_base_url = "https://hwisu.shop";
-const backend_base_url = "http://127.0.0.1:8000";
-const frontend_base_url = "http://127.0.0.1:5500";
+const backend_base_url = "https://rbgud.shop";
+const frontend_base_url = "https://hwisu.shop";
+
 
 // 회원가입
 async function handle_signup() {
@@ -40,7 +39,7 @@ async function handle_signup() {
   else if (pwPatternCheck(password) === false) {
     return
   }
-  
+
   // formData 입력
   const signupData = new FormData();
 

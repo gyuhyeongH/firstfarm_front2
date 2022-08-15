@@ -28,15 +28,14 @@
 <body class="is-preload">
 	<!-- Wrapper -->
 	<div id="wrapper">
-		<a href="index.html" class="logo">
-			<img style="margin-top:50px; margin-left:50px; width: 150px; height: 150px;" src="./img/first_farm_logo.png"
-				alt="" />
-		</a>
-		<!-- Header -->
 		<header id="header">
 			<div class="inner">
 
 				<!-- Logo -->
+				<a href="index.html" class="logo">
+					<span class="symbol"><img src="./images/first_farm_logo.png" alt="" /></span><span
+						class="title">FristFarm</span>
+				</a>
 
 				<!-- Nav -->
 				<nav>
@@ -50,19 +49,37 @@
 
 		<!-- Menu -->
 		<nav id="menu">
-
-			<h2></h2>
+			<h2>Menu</h2>
+			<ul><br></ul>
 			<ul>
 				<li><a href="index.html">소개</a></li>
 				<li><a href="search_article.html">알바 / 체험 찾기</a></li>
-				<li><a href="generic.html">공고 등록</a></li>
-				<li><a href="generic.html">마이 페이지</a></li>
-				<li><a href="signin.html">로그인</a></li>
+				<li><a href="articleupload.html" id="a_article">공고 등록</a></li>
+				<li class="btn_hover">
+					<a id="a_mypage" class="link" onclick="handle_enter_mypage()">
+						마이페이지
+					</a>
+				</li>
+				<li class="btn_hover">
+					<a id="a_logout" class="nav-logout" onclick="handle_logout()">
+						로그아웃
+					</a>
+				</li>
+				<li class="btn_hover">
+					<a id="a_login" class="nav-signin" href="signin.html">
+						로그인
+					</a>
+				</li>
+				<li class="btn_hover">
+					<a id="a_signup" class="nav-signup" href="signup.html">
+						회원가입
+					</a>
+				</li>
 			</ul>
 		</nav>
 
 		<!-- Main -->
-		<div id="main" style="margin-top:-120px">
+		<div id="main">
 			<div class="inner">
 				<header>
 					<nav style="height:45px;">
@@ -197,154 +214,6 @@
 				</header>
 
 				<section class="tiles" id="get_article">
-					<article class="style1">
-						<span class="image">
-							<img src="images/pic01.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Magna</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style2">
-						<span class="image">
-							<img src="images/pic01.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>포도 농장에 어서 오세요~</h2>
-							<div class="content">
-								<p>지역:부산 강서구 가달1로 33<br>
-
-									설명:딸기좋아하시는분<br>
-									급여:무료<br>
-									근무날짜:주말 하루!<br>
-									등록일:2000-11-11</p>
-							</div>
-						</a>
-					</article>
-					<article class="style2">
-						<span class="image">
-							<img src="images/pic02.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Lorem</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style3">
-						<span class="image">
-							<img src="images/pic03.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Feugiat</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style4">
-						<span class="image">
-							<img src="images/pic04.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Tempus</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style5">
-						<span class="image">
-							<img src="images/pic05.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Aliquam</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style6">
-						<span class="image">
-							<img src="images/pic06.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Veroeros</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style2">
-						<span class="image">
-							<img src="images/pic07.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Ipsum</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style3">
-						<span class="image">
-							<img src="images/pic08.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Dolor</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style1">
-						<span class="image">
-							<img src="images/pic09.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Nullam</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style5">
-						<span class="image">
-							<img src="images/pic10.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Ultricies</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style6">
-						<span class="image">
-							<img src="images/pic11.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Dictum</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
-					<article class="style4">
-						<span class="image">
-							<img src="images/pic12.jpg" alt="" />
-						</span>
-						<a href="generic.html">
-							<h2>Pretium</h2>
-							<div class="content">
-								<p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
-							</div>
-						</a>
-					</article>
 				</section>
 			</div>
 		</div>
@@ -368,6 +237,7 @@
 	<script src="assets/js/util.js"></script>
 	<script src="assets/js/main.js"></script>
 	<script src="js/search_article.js"> </script>
+	<script src="./js/nav.js"></script>
 </body>
 
 </html>
