@@ -706,7 +706,7 @@ async function handle_signput() {
 
     $.ajax({
         type: "PUT",
-        url: "https://rbgud.shop/article/farmer/" + user_id + "/",
+        url: "https://rbgud.shop/user/" + user_id + "/",
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
@@ -720,9 +720,9 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-                    window.location.replace(`https://rbgud.shop/farm.html`);
+                    window.location.replace(`https://hwisu.shop/farm.html`);
                 } else {
-                    window.location.replace(`https://rbgud.shop/farmer.html`);
+                    window.location.replace(`https://hwisu.shop/farmer.html`);
                 }
             }
         },
