@@ -7,7 +7,7 @@ function XSSCheck(str, level) {
     }
     return str;
   }
-  
+
 $(document).ready(function () {
     get_farm();
 })
@@ -27,6 +27,13 @@ function get_farm() {
         },
         data: {},
         success: function (response) {
+            let temp_put_info = `
+                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
+                style="width: 30%; float: right;">
+               저장
+               </a>
+                `;
+            $('#button_box').append(temp_put_info);
             if(response.length>0){
                 let rank = response[0]['userinfo']['rank']
                 let birthday = response[0]['userinfo']['birthday']
@@ -39,6 +46,7 @@ function get_farm() {
                 let phone_number = response[0]['userinfo']['phone_number']
                 let points = response[0]['userinfo']['points']
                 let prof_img= response[0]['userinfo']['profile_img']
+
                 if(prof_img == undefined || null){
                     let temp_container = `
                     <div class="container">
@@ -113,14 +121,13 @@ function get_farm() {
                     `;
                     $('#top').append(temp_container);
                 }
-                let temp_put_info = `
-                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
-                style="width: 30%; float: right;">
-               저장
-               </a>
-                `;
-                $('#button_box').append(temp_put_info);
 
+                let temp_plus_name = `
+                <h1>게시한 공고</h1>
+                <p>여름지기님들과 함께한 시간들을 확인해 보세요 :)</p>`;
+                $('#plus_name').append(temp_plus_name)
+
+                $('#articlearticle').empty();
                 for (let i = 0; i < response.length; i++){
                     let article_id = response[i]['id']
                     let farmname = response[i]['farm_name']
@@ -159,7 +166,8 @@ function get_farm() {
                             <article class="box style2">
                                 <div class="image featured">
                                 <img src="${img1}" alt="default_img" />
-                                </div>                                <h3><a href="./articledetail.html">${title}</a></h3>
+                                </div>                                
+                                <h3><a href="./articledetail.html">${title}</a></h3>
                                 <p> 농장 : ${farmname} <br />
                                     비용 : ${cost} <br />
                                     필수 사항 : ${requirement} <br />
@@ -175,12 +183,7 @@ function get_farm() {
                         $('#articlearticle').append(temp_article_info);                       
                     }
                 }
-                let temp_plus_name = `
-                <h1>게시한 공고</h1>
-                <p>여름지기님들과 함께한 시간들을 확인해 보세요 :)</p>`;
-                $('#plus_name').append(temp_plus_name)
             }else{
-                console.log(response)
                 let rank = response.rank
                 let birthday = response.birthday
                 let email = response.email
@@ -192,7 +195,11 @@ function get_farm() {
                 let phone_number = response.phone_number
                 let points = response.points
                 let prof_img = response.profile_img
-    
+
+                let temp_plus_name = `
+                <h1>게시한 공고</h1>
+                <p>아직 게시한 공고가 없어요</p>`;
+                $('#plus_name').append(temp_plus_name);
                 if(prof_img == undefined || null){
                     let temp_container = `
                     <div class="container">
@@ -268,19 +275,6 @@ function get_farm() {
                     `;
                     $('#top').append(temp_container);
                 }
-
-                let temp_plus_name = `
-                <h1>게시한 공고</h1>
-                <p>아직 게시한 공고가 없어요</p>`;
-                $('#plus_name').append(temp_plus_name);
-
-                let temp_put_info = `
-                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
-                style="width: 30%; float: right;">
-               저장
-               </a>
-                `;
-                $('#button_box').append(temp_put_info);
         }
             
         }
@@ -375,7 +369,7 @@ async function handle_signput() {
     
     $.ajax({
         type: "PUT",
-        url: "https://rbgud.shop/article/farmer/" + user_id +"/",
+        url: "https://rbgud.shop/user/" + user_id +"/",
         beforeSend: function (xhr) {
           xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
