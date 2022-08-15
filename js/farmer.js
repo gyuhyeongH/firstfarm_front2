@@ -159,18 +159,18 @@ function get_farmer() {
                     let temp_post_button = `                                   
                     <div id="article_review_post${article_id}" class="hide">
                         <div class="col-12">
-                        <textarea name="content" id="review_content" placeholder="후기 내용"
+                        <textarea name="content" id="review_content${article_id}" placeholder="후기 내용"
                             style="width:80%;height:100%;"></textarea>
                         </div>
                         <div class="col-12" style="margin-bottom: 25px;">
                             <h3>💡 후기 사진은 최대 3장 업로드 가능합니다 </h3>
                             <div>
-                                <input class="form-control" type="file" id="formFileMultiple" multiple>
+                                <input class="form-control" type="file" id="formFileMultiple${article_id}" multiple>
                             </div>
                         </div>
                         <div class="col-12">
                             <div>
-                                <select class="form-select" id="post-select" aria-label="rate"
+                                <select class="form-select" id="post-select${article_id}" aria-label="rate"
                                     style="margin-bottom: 25px;">
                                     <option selected>이번 ${farmname}농장지기님과의 ${title}경험은 어땟나요?</option>
                                     <option value="1">⭐️</option>
@@ -413,6 +413,7 @@ function get_review() {
                 let created_at = response[i]['created_at'].split('T')[0]
                 let updated_at = response[i]['updated_at'].split('T')[0]
                 let star = get_star(rate)
+<<<<<<< HEAD
                 let img_print = [img1, img2, img3]
                 for (let j = 0; j < 3; j++) {
                     if (img_print[j] == undefined || img_print[j] == null) {
@@ -420,6 +421,15 @@ function get_review() {
                     }
                 }
                 if (img1 == undefined || img1 == null && img2 == undefined || img2 == null && img3 == undefined || img3 == null) {
+=======
+                let img_print = [img1,img2,img3]
+                for(let j=0;j<3;j++){
+                    if(img_print[j] == undefined || img_print[j] == null){
+                        img_print.splice(j) // 없는 이미지는 삭제
+                    }
+                }
+                if((img1 == undefined || img1 == null) && (img2 == undefined || img2 == null) && (img3 == undefined || img3 == null)){
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
@@ -485,26 +495,41 @@ function get_review() {
                     </div>
                     `;
                     $('#review_put_box').append(temp_put);
+<<<<<<< HEAD
                 } else {
                     let temp_review = `
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
                                 <div class="image featured" id="review_imageimage${review_id}">
+=======
+                }else{
+                    let temp_review =`
+                    <div class="col-4 col-6-medium col-12-small">
+                        <article class="box style2">
+                            <div class="image featured" id="review_imageimage${review_id}">
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
 
-                                </div>
-                                <h3><a href="./articledetail.html">${article_title}</a></h3>
-                                <p> ${content} <br />
-                                    ${star} <br />
-                                    기간 :  ${period} 일간 참여 <br />
-                                    업로드 : ${created_at} |
-                                    수정 : ${updated_at} <br /></p>
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${review_id}">
-                                        후기 수정
-                                    </button>
-                                    <button onclick="delete_review(${review_id})">후기 삭제</button>			
-                            </article>
-                        </div>
+                            </div>
+                            <h3><a href="./articledetail.html">${article_title}</a></h3>
+                            <p> ${content} <br />
+                                ${star} <br />
+                                기간 :  ${period} 일간 참여 <br />
+                                업로드 : ${created_at} |
+                                수정 : ${updated_at} <br /></p>
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal${review_id}">
+                                    후기 수정
+                                </button>
+                                <button onclick="delete_review(${review_id})">후기 삭제</button>			
+                        </article>
+                    </div>
+                    `;
+                    $('#reviewreview').append(temp_review);
+
+                        for(let j=0;j<img_print.length;j++){
+                            let temp_reviewimageimage = `
+                            <img src="${img_print}[${j}]"alt="review_img" />
                         `;
+<<<<<<< HEAD
                     $('#reviewreview').append(temp_review);
 
                     for (let j = 0; j < img_print.length; j++) {
@@ -523,58 +548,85 @@ function get_review() {
                                         <h5 class="modal-title" id="exampleModalLabel">후기 수정</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal"
                                             aria-label="Close"></button>
+=======
+                        $('#review_imageimage'+review_id).append(temp_reviewimageimage);
+                        }
+
+                    let temp_put =`
+                    <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">후기 수정</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="mb-3">
+                                        <label for="exampleFormControlTextarea" class="form-label"> ✏️ 후기를 수정해
+                                            주세요!</label>
+                                        <textarea class="form-control" id="review_content_put"
+                                            rows="10"></textarea>
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                                     </div>
-                                    <div class="modal-body">
-                                        <div class="mb-3">
-                                            <label for="exampleFormControlTextarea" class="form-label"> ✏️ 후기를 수정해
-                                                주세요!</label>
-                                            <textarea class="form-control" id="review_content_put"
-                                                rows="10"></textarea>
-                                        </div>
-                                        <!-- 사진 업로드 -->
-                                        <div class="mb-3">
-                                            <label for="formFileMultiple" class="form-label">💡 후기 사진은 최대 3장 업로드
-                                                가능합니다 </label>
-                                            <input class="form-control" type="file" id="put_FileMultiple" multiple>
-                                        </div>
-                                        <!-- 평점 -->
-                                        <select class="form-select" id="put-select" aria-label="rate">
-                                            <option selected>🌟 이만큼 만족했어요!</option>
-                                            <option value="1">⭐️</option>
-                                            <option value="2">⭐️⭐️</option>
-                                            <option value="3">⭐️⭐️⭐️</option>
-                                            <option value="4">⭐️⭐️⭐️⭐️</option>
-                                            <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
-                                        </select>
+                                    <!-- 사진 업로드 -->
+                                    <div class="mb-3">
+                                        <label for="formFileMultiple" class="form-label">💡 후기 사진은 최대 3장 업로드
+                                            가능합니다 </label>
+                                        <input class="form-control" type="file" id="put_FileMultiple" multiple>
                                     </div>
-                                    <div class="modal-footer">
-                                        <button type="button" class="btn btn-secondary"
-                                            data-bs-dismiss="modal">닫기</button>
-                                        <button type="button" class="btn btn-primary"
-                                            onclick="put_review(${review_id})">후기 수정
-                                            하기</button>
-                                    </div>
+                                    <!-- 평점 -->
+                                    <select class="form-select" id="put-select" aria-label="rate">
+                                        <option selected>🌟 이만큼 만족했어요!</option>
+                                        <option value="1">⭐️</option>
+                                        <option value="2">⭐️⭐️</option>
+                                        <option value="3">⭐️⭐️⭐️</option>
+                                        <option value="4">⭐️⭐️⭐️⭐️</option>
+                                        <option value="5">⭐️⭐️⭐️⭐️⭐️</option>
+                                    </select>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">닫기</button>
+                                    <button type="button" class="btn btn-primary"
+                                        onclick="put_review(${review_id})">후기 수정
+                                        하기</button>
                                 </div>
                             </div>
                         </div>
+<<<<<<< HEAD
                         `;
                 $('#review_put_box').append(temp_put);
             }
 
+=======
+                    </div>
+                    `;
+                    $('#review_put_box').append(temp_put);
+                }
+            }
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
         }
     })
 }
 /* 리뷰 작성 */
 function post_review(article_id) {
     var token = localStorage.getItem("access")
+<<<<<<< HEAD
     let content = $('#review_content').val()
     let img = $('#formFileMultiple')[0];
     if (img.files.length > 3) {
+=======
+    let content = $('#review_content'+article_id).val()
+    let img = $('#formFileMultiple'+article_id)[0];
+    if(img.files.length > 3) {
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
         alert("사진 업로드는 최대 3개까지 가능합니다");
         return;
     }
 
-    let rate = $('#post-select').val()
+    let rate = $('#post-select'+article_id).val()
     const formData = new FormData();
     formData.append("img1", img.files[0]);
     formData.append("img2", img.files[1]);
@@ -623,6 +675,7 @@ function put_review(review_id) {
     formData.append("img3", img.files[2]);
     formData.append("content", XSSCheck(content, 1));
     formData.append("rate", rate);
+    console.log(img.files[0])
     $.ajax({
         type: "PUT",
         url: "https://rbgud.shop/article/farmer/" + review_id,
@@ -637,8 +690,12 @@ function put_review(review_id) {
             window.location.reload();
         },
         error: function (response) {
+<<<<<<< HEAD
             console.log(response)
             if (response["message"] == '리뷰 수정 실패!') {
+=======
+            if(response["message"] == '리뷰 수정 실패!' ){
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                 alert("리뷰 수정에 실패했습니다");
             } else {
                 alert("작성자만 리뷰 수정이 가능합니다");
@@ -705,9 +762,15 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
+<<<<<<< HEAD
                     window.location.replace(`https://hwisu.shop/farm.html`);
                 } else {
                     window.location.replace(`https://hwisu.shop/farmer.html`);
+=======
+                    window.location.replace(`http://hwisu.shop/farm.html`);
+                } else {
+                    window.location.replace(`http://hwisu.shop/farmer.html`);
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                 }
             }
         },

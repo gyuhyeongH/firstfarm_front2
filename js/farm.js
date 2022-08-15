@@ -435,9 +435,15 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
+<<<<<<< HEAD
                     window.location.replace(`https://hwisu.shop/farm.html`);
                 } else {
                     window.location.replace(`https://hwisu.shop/farmer.html`);
+=======
+                    window.location.replace(`http://hwisu.shop/farm.html`);
+                } else {
+                    window.location.replace(`http://hwisu.shop/farmer.html`);
+>>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                 }
             }
         },
