@@ -392,6 +392,11 @@ function get_review() {
         },
         data: {},
         success: function (response) {
+            let temp_review_plus_name = `
+            <h1>내가 작성한 후기</h1>
+            <p>농장지기님들과의 추억을 보관중입니다, 내가 작성한 후기들을 확인해 보세요 🧚</p>
+            `;
+            $('#review_plus_name').append(temp_review_plus_name);
             for (let i = 0; i < response.length; i++) {
                 let article_title = response[i]['articleinfo']['title']
                 let period = response[i]['articleinfo']['period']
@@ -404,8 +409,14 @@ function get_review() {
                 let created_at = response[i]['created_at'].split('T')[0]
                 let updated_at = response[i]['updated_at'].split('T')[0]
                 let star = get_star(rate)
+                let img_print = [img1,img2,img3]
 
-                if(img1 == undefined || img1 == null || img2 == undefined || img2 == null || img3 == undefined || img3 == null){
+                for(let j=0;j<3;j++){
+                    if(img_print[j] == undefined || img_print[j] == null){
+                        img_print.splice(j) // 없는 이미지는 삭제
+                    }
+                }
+                if(img1 == undefined || img1 == null && img2 == undefined || img2 == null && img3 == undefined || img3 == null){
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
@@ -472,13 +483,11 @@ function get_review() {
                     `;
                     $('#review_put_box').append(temp_put);
                     }else{
-                        let temp_review = `
+                        let temp_review =`
                         <div class="col-4 col-6-medium col-12-small">
                             <article class="box style2">
-                                <div class="image featured">
-                                <img src="${img1}" alt="default_img" />
-                                <img src="${img2}" alt="default_img" />
-                                <img src="${img3}" alt="default_img" />
+                                <div class="image featured" id="review_imageimage${review_id}">
+
                                 </div>
                                 <h3><a href="./articledetail.html">${article_title}</a></h3>
                                 <p> ${content} <br />
@@ -494,6 +503,14 @@ function get_review() {
                         </div>
                         `;
                         $('#reviewreview').append(temp_review);
+
+                            for(let j=0;j<img_print.length;j++){
+                                let temp_reviewimageimage = `
+                                <img src="img_print[${j}]" alt="review_img" />
+                            `;
+                            $('#review_imageimage${review_id}').append(temp_reviewimageimage)
+                            }
+                        }
                         let temp_put =`
                         <div class="modal fade" id="exampleModal${review_id}" tabindex="-1"
                         aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -539,17 +556,9 @@ function get_review() {
                         </div>
                         `;
                         $('#review_put_box').append(temp_put);
-        
                 }
 
             }
-            let temp_review_plus_name = `
-            <h1>내가 작성한 후기</h1>
-            <p>농장지기님들과의 추억을 보관중입니다, 내가 작성한 후기들을 확인해 보세요 🧚</p>
-            `;
-            $('#review_plus_name').append(temp_review_plus_name);
-
-        }
     })
 }
 /* 리뷰 작성 */
@@ -561,6 +570,7 @@ function post_review(article_id) {
         alert("사진 업로드는 최대 3개까지 가능합니다");
         return;
     }
+
     let rate = $('#post-select').val()
     const formData = new FormData();
     formData.append("img1", img.files[0]);
