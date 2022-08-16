@@ -6,11 +6,7 @@ function XSSCheck(str, level) {
         str = str.replace(/\>/g, "&gt;");
     }
     return str;
-<<<<<<< HEAD
 }
-=======
-  }
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
 
 $(document).ready(function () {
     get_farm();
@@ -31,9 +27,6 @@ function get_farm() {
         },
         data: {},
         success: function (response) {
-<<<<<<< HEAD
-            if (response.length > 0) {
-=======
             let temp_put_info = `
                 <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
                 style="width: 30%; float: right;">
@@ -41,8 +34,8 @@ function get_farm() {
                </a>
                 `;
             $('#button_box').append(temp_put_info);
-            if(response.length>0){
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
+            if (response.length > 0) {
+
                 let rank = response[0]['userinfo']['rank']
                 let birthday = response[0]['userinfo']['birthday']
                 let email = response[0]['userinfo']['email']
@@ -53,14 +46,10 @@ function get_farm() {
                 let introduction = response[0]['userinfo']['introduction']
                 let phone_number = response[0]['userinfo']['phone_number']
                 let points = response[0]['userinfo']['points']
-<<<<<<< HEAD
                 let prof_img = response[0]['userinfo']['profile_img']
-                if (prof_img == undefined || null) {
-=======
-                let prof_img= response[0]['userinfo']['profile_img']
 
-                if(prof_img == undefined || null){
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
+                if (prof_img == undefined || null) {
+
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -135,17 +124,14 @@ function get_farm() {
                     $('#top').append(temp_container);
                 }
 
-<<<<<<< HEAD
-                for (let i = 0; i < response.length; i++) {
-=======
                 let temp_plus_name = `
                 <h1>게시한 공고</h1>
                 <p>여름지기님들과 함께한 시간들을 확인해 보세요 :)</p>`;
                 $('#plus_name').append(temp_plus_name)
 
                 $('#articlearticle').empty();
-                for (let i = 0; i < response.length; i++){
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
+                for (let i = 0; i < response.length; i++) {
+
                     let article_id = response[i]['id']
                     let farmname = response[i]['farm_name']
                     let location = response[i]['location']
@@ -200,16 +186,8 @@ function get_farm() {
                         $('#articlearticle').append(temp_article_info);
                     }
                 }
-<<<<<<< HEAD
-                let temp_plus_name = `
-                <h1>게시한 공고</h1>
-                <p>여름지기님들과 함께한 시간들을 확인해 보세요 :)</p>`;
-                $('#plus_name').append(temp_plus_name)
             } else {
-                console.log(response)
-=======
-            }else{
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
+
                 let rank = response.rank
                 let birthday = response.birthday
                 let email = response.email
@@ -222,15 +200,12 @@ function get_farm() {
                 let points = response.points
                 let prof_img = response.profile_img
 
-<<<<<<< HEAD
-                if (prof_img == undefined || null) {
-=======
                 let temp_plus_name = `
                 <h1>게시한 공고</h1>
                 <p>아직 게시한 공고가 없어요</p>`;
                 $('#plus_name').append(temp_plus_name);
-                if(prof_img == undefined || null){
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
+                if (prof_img == undefined || null) {
+
                     let temp_container = `
                     <div class="container">
                         <div class="row" style="text-align: center;">
@@ -305,26 +280,9 @@ function get_farm() {
                     `;
                     $('#top').append(temp_container);
                 }
-<<<<<<< HEAD
 
-                let temp_plus_name = `
-                <h1>게시한 공고</h1>
-                <p>아직 게시한 공고가 없어요</p>`;
-                $('#plus_name').append(temp_plus_name);
-
-                let temp_put_info = `
-                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
-                style="width: 30%; float: right;">
-               저장
-               </a>
-                `;
-                $('#button_box').append(temp_put_info);
             }
 
-=======
-        }
-            
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
         }
     })
 }
@@ -417,11 +375,7 @@ async function handle_signput() {
 
     $.ajax({
         type: "PUT",
-<<<<<<< HEAD
         url: "https://rbgud.shop/user/" + user_id + "/",
-=======
-        url: "https://rbgud.shop/user/" + user_id +"/",
->>>>>>> 351697083d2d52547020d5a9535069917023a00f
         beforeSend: function (xhr) {
             xhr.setRequestHeader("Authorization", "Bearer " + token);
         },
@@ -435,15 +389,9 @@ async function handle_signput() {
             if (payload != null) {
                 const user_category = payload.category;
                 if (user_category == 1) {
-<<<<<<< HEAD
                     window.location.replace(`https://hwisu.shop/farm.html`);
                 } else {
                     window.location.replace(`https://hwisu.shop/farmer.html`);
-=======
-                    window.location.replace(`http://hwisu.shop/farm.html`);
-                } else {
-                    window.location.replace(`http://hwisu.shop/farmer.html`);
->>>>>>> b1a788e5dc29cb1a474a8ca132232091defff528
                 }
             }
         },
