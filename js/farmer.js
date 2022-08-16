@@ -364,13 +364,6 @@ function get_farmer() {
                 `;
                 $('#plus_name').append(temp_article_review);
 
-                let temp_put_info = `
-                <a title="Button push blue/green" class="button btnPush btnBlueGreen" onclick="handle_signput()"
-                style="width: 30%; float: right;">
-               저장
-               </a>
-                `;
-                $('#button_box').append(temp_put_info);
             }
         }
     })
@@ -484,9 +477,10 @@ function get_review() {
                     let temp_review = `
                     <div class="col-4 col-6-medium col-12-small">
                         <article class="box style2">
-                        <div class="image featured" id="review_imageimage${review_id}">
+                            <div class="image featured" id="review_imageimage${review_id}">
+                            
                             </div>
-                            <a class="prev" onclick="plusSlides(-1)">리뷰 이미지 보기 ❯</a>
+                            <a class="prev" onclick="plusSlides(-1,${review_id})" id="review_image_button">리뷰 이미지 보기 ❯</a>
                             <h3><a href="./articledetail.html">${article_title}</a></h3>
                             <p> ${content} <br />
                                 ${star} <br />
@@ -504,7 +498,7 @@ function get_review() {
                         for(let j=0;j<img_print.length;j++){
                             let review_img = img_print[j]
                             let temp_reviewimageimage = `
-                            <div class="mySlides fade" id="first_slide${j}">
+                            <div class="mySlides fade Jslide${review_id}">
                                 <img src="${review_img}"alt="review_img" />
                             </div>
                         `;
