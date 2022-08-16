@@ -322,7 +322,7 @@ const category_btn = document.getElementsByClassName("category_btn");
 function handleClick(event) {
   event.target.value;
   // 콘솔창을 보면 둘다 동일한 값이 나온다
-  
+
   if (event.target.classList[1] === "clicked") {
     event.target.classList.remove("clicked");
   } else {
@@ -331,7 +331,7 @@ function handleClick(event) {
     // }
     category_btn[0].classList.remove("clicked");
     category_btn[1].classList.remove("clicked");
-    
+
     event.target.classList.add("clicked");
   }
 }
