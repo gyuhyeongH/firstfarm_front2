@@ -20,14 +20,11 @@ $(document).ready(function () {
 function handle_enter_mypage() {
     const payload = JSON.parse(localStorage.getItem("payload"));
     if (payload != null) {
-        if (payload.category ==
-            1) {
+        if (payload.category == 1) {
             window.location.replace(`https://hwisu.shop/farm.html`);
         } else {
             window.location.replace(`https://hwisu.shop/farmer.html`);
         }
-    } else {
-        window.location.replace(`https://hwisu.shop/signin.html`);
     }
 }
 
